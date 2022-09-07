@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules",
+    "tsBuildInfoFile": "../../build/modules/.tsbuildinfo"
+  },
+  "references": [
+    { "path": "./chat-cleaner/chat-cleaner.modules.tsconfig.json" },
+    { "path": "./command-manager/command-manager.modules.tsconfig.json" },
+    { "path": "./custom-rpc/custom-rpc.modules.tsconfig.json" },
+    { "path": "./discord-integration/discord-integration.modules.tsconfig.json" },
+    { "path": "./jewguessr/jewguessr.modules.tsconfig.json" },
+    { "path": "./mass-ban-tool/mass-ban-tool.modules.tsconfig.json" },
+    { "path": "./musicbot/musicbot.modules.tsconfig.json" },
+    { "path": "./role-manager/role-manager.modules.tsconfig.json" },
+    { "path": "./sandbox/sandbox.modules.tsconfig.json" },
+    { "path": "./text-to-speech/text-to-speech.modules.tsconfig.json" }
+  ],
+  "files": [
+    "./index.ts"
+  ]
+}

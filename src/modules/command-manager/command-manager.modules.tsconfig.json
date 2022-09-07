@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules/command-manager",
+    "tsBuildInfoFile": "../../../build/modules/command-manager/.tsbuildinfo",
+    "composite": true
+  },
+  "include": [
+    "./**/*"
+  ]
+}

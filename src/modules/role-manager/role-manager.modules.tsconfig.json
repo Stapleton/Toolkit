@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules/role-manager",
+    "tsBuildInfoFile": "../../../build/modules/role-manager/.tsbuildinfo",
+    "composite": true
+  },
+  "include": [
+    "./**/*"
+  ]
+}

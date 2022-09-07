@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules/text-to-speech",
+    "tsBuildInfoFile": "../../../build/modules/text-to-speech/.tsbuildinfo",
+    "composite": true
+  },
+  "include": [
+    "./**/*"
+  ]
+}

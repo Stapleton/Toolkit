@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules/discord-integration",
+    "tsBuildInfoFile": "../../../build/modules/discord-integration/.tsbuildinfo",
+    "composite": true
+  },
+  "include": [
+    "./**/*"
+  ]
+}

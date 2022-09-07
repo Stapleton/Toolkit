@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/core",
+    "tsBuildInfoFile": "../../build/core/.tsbuildinfo"
+  },
+  "files": [
+    "index.ts",
+    "error/MissingModule.ts",
+    "error/UDPSocketServerError.ts"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/api",
+    "tsBuildInfoFile": "../../build/api/.tsbuildinfo"
+  },
+  "include": [
+    "./**/*"
+  ]
+}

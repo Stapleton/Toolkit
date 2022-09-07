@@ -1,0 +1,11 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "B:/Projects/Toolkit/src/modules/sandbox",
+    "tsBuildInfoFile": "../../../build/modules/sandbox/.tsbuildinfo",
+    "composite": true
+  },
+  "include": [
+    "./**/*"
+  ]
+}
