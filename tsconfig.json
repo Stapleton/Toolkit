@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "assumeChangesOnlyAffectDirectDependencies": true,
+    "baseUrl": "../Toolkit",
     "declaration": true,
     "declarationDir": "./typings",
     "declarationMap": true,
@@ -22,16 +23,19 @@
     "noUnusedParameters": true,
     "outDir": "./build",
     "paths": {
-      "@Mods/*": ["./src/modules/*"],
-      "@App/*": ["./src/app/*"],
-      "@Api/*": ["./src/api/*"],
-      "@Core/*": ["./src/core/*"]
+      "@Mods/*": ["src/modules/*"],
+      "@App/*": ["src/app/*"],
+      "@Api/*": ["src/api/*"],
+      "@Core/*": ["src/core/*"],
+      "@Config/*": ["config/*"],
+      "@Toolkit": ["src/Toolkit.ts"]
     },
     "resolveJsonModule": true,
-    "rootDir": "./src",
+    "rootDir": "./",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "target": "ESNext",
+    "tsBuildInfoFile": "./build/.tsbuildinfo",
     "watch": true
   },
   "references": [
@@ -40,5 +44,8 @@
     { "path": "./src/modules/modules.tsconfig.json" },
     { "path": "./src/core/core.tsconfig.json" }
   ],
-  "files": []
+  "files": [
+    "src/Toolkit.ts",
+    "index.ts"
+  ]
 }

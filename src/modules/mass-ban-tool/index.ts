@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import { Signale } from "signale";
+import Toolkit from "@Toolkit";
 
 /***** Setup *****/
-export const Logger = new Signale({ scope: "[Mod][Mass Ban Tool]" });
+let Logger = Toolkit.Logger.Mods.scope("Mod/Mass Ban Tool");
 
 Logger.start("Initializing");

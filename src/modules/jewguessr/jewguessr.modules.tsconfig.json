@@ -1,11 +1,13 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "B:/Projects/Toolkit/src/modules/jewguessr",
     "tsBuildInfoFile": "../../../build/modules/jewguessr/.tsbuildinfo",
     "composite": true
   },
   "include": [
-    "./**/*"
+    "**/*"
+  ],
+  "files": [
+    "../../Toolkit.ts"
   ]
 }

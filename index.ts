@@ -1,19 +1,10 @@
-/**
- * /*
- * Toolkit Entry File
- *
- * @format
- */
+/** @format */
 
-// TODO: Spawn one worker for each domain (API, APP, CORE, MODS)
+import { fork } from "child_process";
 
-/***** Imports *****/
-import { ChildProcess, fork } from "child_process";
-
-/***** Setup *****/
-export const DOMAIN_WORKERS: { [key: string]: ChildProcess } = {
-  API: fork("./src/api/index.ts", { serialization: "advanced" }),
-  APP: fork("./src/app/index.ts", { serialization: "advanced" }),
-  CORE: fork("./src/core/index.ts", { serialization: "advanced" }),
-  MODS: fork("./src/modules/index.ts", { serialization: "advanced" }),
+export const Workers = {
+  Api: fork("./src/api/index.ts", { serialization: "advanced" }),
+  App: fork("./src/app/index.ts", { serialization: "advanced" }),
+  Core: fork("./src/core/index.ts", { serialization: "advanced" }),
+  Mods: fork("./src/modules/index.ts", { serialization: "advanced" }),
 };

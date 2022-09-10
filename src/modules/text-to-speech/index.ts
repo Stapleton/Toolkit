@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import { Signale } from "signale";
+import Toolkit from "@Toolkit";
 
 /***** Setup *****/
-export const Logger = new Signale({ scope: "[Mod][Text To Speech]" });
+let Logger = Toolkit.Logger.Mods.scope("Mod/Text to Speech");
 
 Logger.start("Initializing");

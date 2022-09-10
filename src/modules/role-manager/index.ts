@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import { Signale } from "signale";
+import Toolkit from "@Toolkit";
 
 /***** Setup *****/
-export const Logger = new Signale({ scope: "[Mod][Role Manager]" });
+let Logger = Toolkit.Logger.Mods.scope("Mod/Role Manager");
 
 Logger.start("Initializing");

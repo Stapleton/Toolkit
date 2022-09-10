@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import { Signale } from "signale";
+import Toolkit from "@Toolkit";
 
 /***** Setup *****/
-export const Logger = new Signale({ scope: "[Mod][Custom RPC]" });
+let Logger = Toolkit.Logger.Mods.scope("Mod/Custom RPC");
 
 Logger.start("Initializing");

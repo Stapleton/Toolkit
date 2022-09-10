@@ -1,0 +1,10 @@
+name = "Stock Trader"
+id = "stock-trader"
+version = "0.0.0"
+type = "mod"
+requires = "none"
+
+[test]
+enabled = true
+randomMax = 96.42
+randomMin = 31.59

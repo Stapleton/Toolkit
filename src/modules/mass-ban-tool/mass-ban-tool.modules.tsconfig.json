@@ -1,11 +1,13 @@
 {
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "B:/Projects/Toolkit/src/modules/mass-ban-tool",
     "tsBuildInfoFile": "../../../build/modules/mass-ban-tool/.tsbuildinfo",
     "composite": true
   },
   "include": [
-    "./**/*"
+    "**/*"
+  ],
+  "files": [
+    "../../Toolkit.ts"
   ]
 }

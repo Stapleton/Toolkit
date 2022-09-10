@@ -1,10 +1,14 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "B:/Projects/Toolkit/src/api",
-    "tsBuildInfoFile": "../../build/api/.tsbuildinfo"
+    "tsBuildInfoFile": "../../build/api/.tsbuildinfo",
+    "composite": true
   },
   "include": [
-    "./**/*"
+    "**/*"
+  ],
+  "files": [
+    "../Toolkit.ts",
+    "../../src/core/error/UDPSocketServerError.ts"
   ]
 }
