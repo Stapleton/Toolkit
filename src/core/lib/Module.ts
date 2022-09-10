@@ -2,18 +2,13 @@
 type ModType = "lib" | "mod";
 type ModRequires = "none" | Array<string>;
 
-export type ModConfig = {
+export interface ModConfig {
   name: string;
   id: string;
   version: string;
   type: ModType;
   requires: ModRequires;
-  test: {
-    enabled: boolean;
-    randomMax: number;
-    randomMin: number;
-  };
-};
+}
 
 export default abstract class Module {
   private name: string;

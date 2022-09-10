@@ -4,7 +4,15 @@ version = "0.0.0"
 type = "mod"
 requires = "none"
 
+[algo]
+# "even" Spread, evenly spreads the hotspots in the gradient
+# "exp" Spread, exponentially spreads the hotspots 
+# (increases frequency further away from the median)
+spread = "exp"
+
 [test]
 enabled = true
 randomMax = 96.42
 randomMin = 31.59
+stepsMax = 5
+stepsMin = 3
