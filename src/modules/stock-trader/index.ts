@@ -36,7 +36,7 @@ class StockTrader extends Module {
 	constructor() {
 		super(Config.name, Config.id, Config.version, Config.type, Config.requires);
 
-		Logger.pending(`Starting Spawner...`);
+		Logger.pending(`Spawning Puppets...`);
 
 		try {
 			new Spawner(Config.Spawner.limit);

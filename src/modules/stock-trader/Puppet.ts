@@ -5,14 +5,15 @@ import { Signale } from "signale";
 import Config from "./Config";
 
 const name = [`Puppet`, `#${process.argv0}`];
-
 let Logger = new Signale({
 	interactive: false,
 	scope: name[1],
-	config: {
-		displayScope: true,
-		displayBadge: false,
-		displayLabel: true,
+	types: {
+		spawn: {
+			label: "SPAWN",
+			badge: "",
+			color: "redBright",
+		},
 	},
 });
 
@@ -46,7 +47,7 @@ function doThing(Page: Puppeteer.Page) {
 }
 
 async function Puppet() {
-	Logger.start(`Spawning ${name.join(" ")}...`);
+	Logger.spawn(`${name.join(" ")}`);
 	startTime(name[1]); // Start logger timer without timer auto log
 
 	const Browser = await Puppeteer.launch({ headless: Config.Puppet.headless });

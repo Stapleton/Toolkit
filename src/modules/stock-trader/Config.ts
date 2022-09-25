@@ -1,6 +1,7 @@
 /** @format */
 
 import { PathLike, readFileSync } from "fs";
+import Toolkit from "../../Toolkit";
 import { join } from "path";
 import { parse } from "toml";
 
@@ -35,6 +36,6 @@ class Config {
 	}
 }
 
-let Conf = new Config(join(process.cwd(), "./config/stock-trader.toml"));
+let Conf = new Config(join(Toolkit.Paths.Config, "./stock-trader.toml"));
 
 export default Conf.Config;

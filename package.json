@@ -32,15 +32,15 @@
 	},
 	"signale": {
 		"displayScope": true,
-		"displayBadge": true,
+		"displayBadge": false,
 		"displayDate": false,
 		"displayFilename": false,
 		"displayLabel": true,
 		"displayTimestamp": false,
-		"underlineLabel": true,
+		"underlineLabel": false,
 		"underlineMessage": false,
 		"underlinePrefix": false,
 		"underlineSuffix": false,
-		"uppercaseLabel": false
+		"uppercaseLabel": true
 	}
 }
