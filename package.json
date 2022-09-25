@@ -1,32 +1,46 @@
 {
-  "name": "toolkit",
-  "version": "0.0.0",
-  "description": "So many tools",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"your mom is gay\";",
-    "start": "node -r ts-node/register -r tsconfig-paths/register ./index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Stapleton/toolkit.git"
-  },
-  "author": "Taylor Stapleton",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Stapleton/toolkit/issues"
-  },
-  "homepage": "https://github.com/Stapleton/toolkit#readme",
-  "dependencies": {
-    "signale": "^1.4.0",
-    "toml": "^3.0.0",
-    "ts-node": "^10.9.1"
-  },
-  "devDependencies": {
-    "@types/node": "^18.7.14",
-    "@types/signale": "^1.4.4",
-    "prettier": "2.6.2",
-    "tsconfig-paths": "^4.1.0",
-    "tslib": "^2.4.0"
-  }
+	"name": "toolkit",
+	"version": "0.0.0",
+	"description": "So many tools",
+	"main": "index.ts",
+	"scripts": {
+		"test": "echo \"your mom is gay\";",
+		"start": "node -r ts-node/register -r tsconfig-paths/register ./index.ts"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Stapleton/toolkit.git"
+	},
+	"author": "Taylor Stapleton",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Stapleton/toolkit/issues"
+	},
+	"homepage": "https://github.com/Stapleton/toolkit#readme",
+	"dependencies": {
+		"puppeteer": "^18.0.5",
+		"signale": "^1.4.0",
+		"toml": "^3.0.0",
+		"ts-node": "^10.9.1"
+	},
+	"devDependencies": {
+		"@types/node": "^18.7.14",
+		"@types/signale": "^1.4.4",
+		"prettier": "2.6.2",
+		"tsconfig-paths": "^4.1.0",
+		"tslib": "^2.4.0"
+	},
+	"signale": {
+		"displayScope": true,
+		"displayBadge": true,
+		"displayDate": false,
+		"displayFilename": false,
+		"displayLabel": true,
+		"displayTimestamp": false,
+		"underlineLabel": true,
+		"underlineMessage": false,
+		"underlinePrefix": false,
+		"underlineSuffix": false,
+		"uppercaseLabel": false
+	}
 }

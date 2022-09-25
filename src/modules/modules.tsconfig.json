@@ -1,25 +1,47 @@
 {
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "tsBuildInfoFile": "../../build/modules/.tsbuildinfo",
-    "composite": true
-  },
-  "references": [
-    { "path": "./chat-cleaner/chat-cleaner.modules.tsconfig.json" },
-    { "path": "./command-manager/command-manager.modules.tsconfig.json" },
-    { "path": "./custom-rpc/custom-rpc.modules.tsconfig.json" },
-    { "path": "./discord/discord.modules.tsconfig.json" },
-    { "path": "./jewguessr/jewguessr.modules.tsconfig.json" },
-    { "path": "./mass-ban-tool/mass-ban-tool.modules.tsconfig.json" },
-    { "path": "./musicbot/musicbot.modules.tsconfig.json" },
-    { "path": "./role-manager/role-manager.modules.tsconfig.json" },
-    { "path": "./sandbox/sandbox.modules.tsconfig.json" },
-    { "path": "./stock-trader/stock-trader.modules.tsconfig.json" },
-    { "path": "./text-to-speech/text-to-speech.modules.tsconfig.json" }
-  ],
-  "files": [
-    "index.ts",
-    "../Toolkit.ts"
-  ],
-  "_comment": "// TODO: Make all of the modules tsconfigs extend this one, I hope that this will allow for each module project to better interact with other modules when it comes to cross module imports"
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "../../build/modules/.tsbuildinfo",
+		"composite": true
+	},
+	"references": [
+		{
+			"path": "./chat-cleaner/chat-cleaner.modules.tsconfig.json"
+		},
+		{
+			"path": "./command-manager/command-manager.modules.tsconfig.json"
+		},
+		{
+			"path": "./custom-rpc/custom-rpc.modules.tsconfig.json"
+		},
+		{
+			"path": "./discord/discord.modules.tsconfig.json"
+		},
+		{
+			"path": "./jewguessr/jewguessr.modules.tsconfig.json"
+		},
+		{
+			"path": "./mass-ban-tool/mass-ban-tool.modules.tsconfig.json"
+		},
+		{
+			"path": "./musicbot/musicbot.modules.tsconfig.json"
+		},
+		{
+			"path": "./role-manager/role-manager.modules.tsconfig.json"
+		},
+		{
+			"path": "./sandbox/sandbox.modules.tsconfig.json"
+		},
+		{
+			"path": "./stock-trader/stock-trader.modules.tsconfig.json"
+		},
+		{
+			"path": "./text-to-speech/text-to-speech.modules.tsconfig.json"
+		}
+	],
+	"files": [
+		"index.ts",
+		"../Toolkit.ts"
+	],
+	"_comment": "// TODO: Make all of the modules tsconfigs extend this one, I hope that this will allow for each module project to better interact with other modules when it comes to cross module imports"
 }

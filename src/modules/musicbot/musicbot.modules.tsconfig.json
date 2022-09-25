@@ -1,13 +1,13 @@
 {
-  "extends": "../../../tsconfig.json",
-  "compilerOptions": {
-    "tsBuildInfoFile": "../../../build/modules/musicbot/.tsbuildinfo",
-    "composite": true
-  },
-  "include": [
-    "**/*"
-  ],
-  "files": [
-    "../../Toolkit.ts"
-  ]
+	"extends": "../../../tsconfig.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "../../../build/modules/musicbot/.tsbuildinfo",
+		"composite": true
+	},
+	"include": [
+		"**/*"
+	],
+	"files": [
+		"../../Toolkit.ts"
+	]
 }

@@ -1,51 +1,76 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "assumeChangesOnlyAffectDirectDependencies": true,
-    "baseUrl": "../Toolkit",
-    "declaration": true,
-    "declarationDir": "./typings",
-    "declarationMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "preserve",
-    "incremental": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "isolatedModules": true,
-    "lib": ["ESNext", "ESNext.Intl", "ESNext.Promise", "ESNext.AsyncIterable"],
-    "module": "NodeNext",
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "outDir": "./build",
-    "paths": {
-      "@Mods/*": ["src/modules/*"],
-      "@App/*": ["src/app/*"],
-      "@Api/*": ["src/api/*"],
-      "@Core/*": ["src/core/*"],
-      "@Config/*": ["config/*"],
-      "@Toolkit": ["src/Toolkit.ts"]
-    },
-    "resolveJsonModule": true,
-    "rootDir": "./",
-    "skipDefaultLibCheck": true,
-    "skipLibCheck": true,
-    "target": "ESNext",
-    "tsBuildInfoFile": "./build/.tsbuildinfo",
-    "watch": true
-  },
-  "references": [
-    { "path": "./src/api/api.tsconfig.json" },
-    { "path": "./src/app/app.tsconfig.json" },
-    { "path": "./src/modules/modules.tsconfig.json" },
-    { "path": "./src/core/core.tsconfig.json" }
-  ],
-  "files": [
-    "src/Toolkit.ts",
-    "index.ts"
-  ]
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"assumeChangesOnlyAffectDirectDependencies": true,
+		"baseUrl": "../Toolkit",
+		"declaration": true,
+		"declarationDir": "./typings",
+		"declarationMap": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"forceConsistentCasingInFileNames": true,
+		"importsNotUsedAsValues": "preserve",
+		"incremental": true,
+		"inlineSourceMap": true,
+		"inlineSources": true,
+		"isolatedModules": true,
+		"lib": [
+			"ESNext",
+			"ESNext.Intl",
+			"ESNext.Promise",
+			"ESNext.AsyncIterable"
+		],
+		"module": "NodeNext",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noImplicitThis": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"outDir": "./build",
+		"paths": {
+			"@Mods/*": [
+				"src/modules/*"
+			],
+			"@App/*": [
+				"src/app/*"
+			],
+			"@Api/*": [
+				"src/api/*"
+			],
+			"@Core/*": [
+				"src/core/*"
+			],
+			"@Config/*": [
+				"config/*"
+			],
+			"@Toolkit": [
+				"src/Toolkit.ts"
+			]
+		},
+		"resolveJsonModule": true,
+		"rootDir": "./",
+		"skipDefaultLibCheck": true,
+		"skipLibCheck": true,
+		"target": "ESNext",
+		"tsBuildInfoFile": "./build/.tsbuildinfo",
+		"watch": true
+	},
+	"references": [
+		{
+			"path": "./src/api/api.tsconfig.json"
+		},
+		{
+			"path": "./src/app/app.tsconfig.json"
+		},
+		{
+			"path": "./src/modules/modules.tsconfig.json"
+		},
+		{
+			"path": "./src/core/core.tsconfig.json"
+		}
+	],
+	"files": [
+		"src/Toolkit.ts",
+		"index.ts"
+	]
 }
