@@ -9,6 +9,7 @@
 	],
 	"files": [
 		"../../Toolkit.ts",
-		"../../../src/core/lib/Module.ts"
+		"../../../src/core/lib/Module.ts",
+		"../../core/lib/Sleep"
 	]
 }
