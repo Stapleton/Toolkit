@@ -1,0 +1,6 @@
+name = "Command Manager"
+id = "command-manager"
+version = "0.0.0"
+type = "mod"
+requires = "none"
+disabled = true

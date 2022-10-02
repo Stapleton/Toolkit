@@ -71,6 +71,6 @@
 	],
 	"files": [
 		"src/Toolkit.ts",
-		"index.ts"
+		"./index.ts"
 	]
 }

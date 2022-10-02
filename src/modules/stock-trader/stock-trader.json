@@ -1,0 +1,9 @@
+{
+    "Info": {
+        "name": "Stock Trader",
+        "id": "stock-trader",
+        "version": "0.0.1",
+        "type": "mod",
+        "requires": "none"
+    }
+}

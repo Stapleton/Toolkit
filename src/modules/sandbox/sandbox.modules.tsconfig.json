@@ -8,6 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts"
+		"../../Toolkit.ts",
+		"./sandbox.json"
 	]
 }

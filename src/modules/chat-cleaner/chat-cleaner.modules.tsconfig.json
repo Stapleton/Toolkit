@@ -8,6 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts"
+		"../../Toolkit.ts",
+		"./chat-cleaner.json"
 	]
 }

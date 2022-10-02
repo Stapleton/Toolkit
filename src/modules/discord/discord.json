@@ -1,0 +1,9 @@
+{
+    "Info": {
+        "name": "Discord",
+        "id": "discord",
+        "version": "0.0.0",
+        "type": "lib",
+        "requires": "none"
+    }
+}

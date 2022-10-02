@@ -18,22 +18,41 @@
 /***** Imports *****/
 import { ChildProcess, fork } from "child_process";
 import Toolkit from "@Toolkit";
+import { join } from "path";
+import { lstat, PathLike, readdirSync, readFileSync } from "fs";
+import { ModID, IModConfig } from "@Core/lib/ModConfig";
+import { parse } from "toml";
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods;
-
 Logger.start("Forking all modules!");
 
-export const Forks: { [key: string]: ChildProcess } = {
-	ChatCleaner: fork("./src/modules/chat-cleaner/index.ts", { serialization: "advanced" }),
-	CommandManager: fork("./src/modules/command-manager/index.ts", { serialization: "advanced" }),
-	CustomRPC: fork("./src/modules/custom-rpc/index.ts", { serialization: "advanced" }),
-	Discord: fork("./src/modules/discord/index.ts", { serialization: "advanced" }),
-	Jewguessr: fork("./src/modules/jewguessr/index.ts", { serialization: "advanced" }),
-	MassBanTool: fork("./src/modules/mass-ban-tool/index.ts", { serialization: "advanced" }),
-	Musicbot: fork("./src/modules/musicbot/index.ts", { serialization: "advanced" }),
-	RoleManager: fork("./src/modules/role-manager/index.ts", { serialization: "advanced" }),
-	Sandbox: fork("./src/modules/sandbox/index.ts", { serialization: "advanced" }),
-	StockTrader: fork("./src/modules/stock-trader/index.ts", { serialization: "advanced" }),
-	TextToSpeech: fork("./src/modules/text-to-speech/index.ts", { serialization: "advanced" }),
-};
+export let Forks: Map<ModID, ChildProcess> = new Map();
+
+function disabled(id: ModID) {
+	let config: IModConfig = parse(readFileSync(join(Toolkit.Paths.Config, `${id}.toml`), "utf8"));
+	return config.disabled;
+}
+
+function ModuleLoader(directory: PathLike) {
+	// Get "direcory" stats
+	lstat(directory, function (error, stats) {
+		if (error) Logger.error(error);
+		if (stats.isDirectory()) {
+			// Get all files in "directory"
+			let directoryList = readdirSync(directory),
+				f,
+				d;
+			for (let file in directoryList) {
+				f = directoryList[file];
+				d = join(directory.toString(), f);
+
+				if (f.includes(".")) continue;
+				if (disabled(f)) continue;
+				Forks.set(f, fork(join(d, "index.ts"), { serialization: "advanced" }));
+			}
+		}
+	});
+}
+
+ModuleLoader(Toolkit.Paths.Mods);

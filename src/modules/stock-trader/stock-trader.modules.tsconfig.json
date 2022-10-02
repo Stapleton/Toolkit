@@ -10,6 +10,9 @@
 	"files": [
 		"../../Toolkit.ts",
 		"../../../src/core/lib/Module.ts",
-		"../../core/lib/Sleep"
+		"../../../src/core/lib/Sleep.ts",
+		"../../../src/core/lib/ModConfig.ts",
+		"./stock-trader.json",
+		"./auth.json"
 	]
 }

@@ -1,23 +1,15 @@
 /** @format */
 
+import ModConfig, { ModID } from "@Core/lib/ModConfig";
+import { Module } from "@Core/lib/Module";
 import { Signale } from "signale";
+import { ChildProcess } from "child_process";
 
-/*type Toolkit = {
-	Paths: {
-		Config: String;
-		Api: String;
-		App: String;
-		Core: String;
-		Mods: String;
-	};
-	Logger: {
-		Global: Signale;
-		Api: Signale;
-		App: Signale;
-		Core: Signale;
-		Mods: Signale;
-	};
-};*/
+export type ToolkitWorker = "api" | "app" | "core" | "module";
+
+export interface ToolkitConfig {
+	disabled: ToolkitWorker[];
+}
 
 class Toolkit {
 	public Paths = {
@@ -25,7 +17,7 @@ class Toolkit {
 		Api: `${process.cwd()}\\src\\api`,
 		App: `${process.cwd()}\\src\\app`,
 		Core: `${process.cwd()}\\src\\core`,
-		Mods: `${process.cwd()}\\src\\mods`,
+		Mods: `${process.cwd()}\\src\\modules`,
 	};
 
 	public Logger = {
@@ -35,6 +27,10 @@ class Toolkit {
 		Core: new Signale({ scope: "Core" }),
 		Mods: new Signale({ scope: "Mods" }),
 	};
+
+	public Workers: Map<ToolkitWorker, ChildProcess> = new Map();
+	public Modules: Map<ModID, Module> = new Map();
+	public Configs: Map<ModID, ModConfig> = new Map();
 }
 
 //Loggers.Global.info(Toolkit.Paths.Config);
