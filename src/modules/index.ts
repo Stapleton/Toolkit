@@ -19,7 +19,7 @@
 import { ChildProcess, fork } from "child_process";
 import Toolkit from "@Toolkit";
 import { join } from "path";
-import { lstat, PathLike, readdirSync, readFileSync } from "fs";
+import { existsSync, lstat, PathLike, readdirSync, readFileSync } from "fs";
 import { ModID, IModConfig } from "@Core/lib/ModConfig";
 import { parse } from "toml";
 
@@ -30,7 +30,10 @@ Logger.start("Forking all modules!");
 export let Forks: Map<ModID, ChildProcess> = new Map();
 
 function disabled(id: ModID) {
-	let config: IModConfig = parse(readFileSync(join(Toolkit.Paths.Config, `${id}.toml`), "utf8"));
+	let path = join(Toolkit.Paths.Config, `${id}.toml`);
+	if (!existsSync(path)) return false;
+	let text = readFileSync(path, "utf8");
+	let config: IModConfig = parse(text);
 	return config.disabled;
 }
 

@@ -89,8 +89,6 @@ disabled = false`;
 		delete this.NotInit[a];
 		this.setConfig(id);
 
-		Toolkit.Logger.Core.success(`Initialized Config for ${name}`);
-
-		// TODO: Make this fire an event on the module instead
+		Toolkit.Logger.Core.star(`Initialized Config for ${name}`);
 	}
 }
