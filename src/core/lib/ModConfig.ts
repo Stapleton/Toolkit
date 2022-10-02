@@ -21,6 +21,9 @@ export interface IModConfig {
 	disabled: boolean;
 }
 
+// ? Change this config system to my old ConfigBuilder
+// ? https://github.com/Stapleton/Bot-Archive/blob/master/Alloybot-Core-Dec2018/lib/ConfigBuilder.ts
+
 export default class ModConfig {
 	private Config: IModConfig;
 	private Path: PathLike;
