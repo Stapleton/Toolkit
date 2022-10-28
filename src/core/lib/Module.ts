@@ -1,8 +1,8 @@
 /** @format */
 
 import ModConfig, { ModName, ModID, ModVersion, ModType, ModRequires } from "@Core/lib/ModConfig";
-import Toolkit from "@Toolkit";
 import EventEmitter from "events";
+import Toolkit from "@Toolkit";
 
 export class Module extends EventEmitter {
 	protected _name: ModName;

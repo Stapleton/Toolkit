@@ -1,16 +1,18 @@
 /**
- * Modules Entry File
+ * Stock Trader Entry File
  *
  * @format
  */
 
 /***** Imports *****/
-import { Module } from "@Core/lib/Module";
 import Toolkit from "@Toolkit";
-import { Auth } from "@Mods/stock-trader/auth.json";
-import { Info } from "@Mods/stock-trader/stock-trader.json";
-import Sleep from "@Core/lib/Sleep";
 import Puppeteer from "puppeteer";
+import Sleep from "@Core/lib/Sleep";
+import { Module } from "@Core/lib/Module";
+import { Auth } from "@Mods/stock-trader/auth.json";
+import OrderMaker from "@Mods/stock-trader/OrderMaker";
+import { Info } from "@Mods/stock-trader/stock-trader.json";
+import { tapEl, typeEl } from "@Mods/stock-trader/ElementAbuse";
 import { IModConfig, ModRequires, ModType } from "@Core/lib/ModConfig";
 
 /***** Interfaces *****/
@@ -59,23 +61,6 @@ class StockTrader extends Module {
 		return time;
 	}
 
-	private async typeEl(query: string, page: Puppeteer.Page, text: string): Promise<void> {
-		await page.type(query, text);
-		Sleep(500);
-	}
-
-	private async tapEl(query: string, page: Puppeteer.Page): Promise<void> {
-		let t = page.touchscreen;
-		await t.tap(...(await this.getElPos(query, page)));
-		Sleep(500);
-	}
-
-	// * This is a fucking godsend
-	private async getElPos(query: string, page: Puppeteer.Page): Promise<[number, number]> {
-		let e = await (await page.$(query)).clickablePoint();
-		return [e.x, e.y];
-	}
-
 	private async setupPuppeteer() {
 		Logger.info(`Launching Puppet...`);
 		const Browser = await Puppeteer.launch({ headless: this.config.Puppet.headless });
@@ -87,8 +72,8 @@ class StockTrader extends Module {
 			height: 850,
 		});
 
+		await this.loginToTradingView(Browser);
 		Logger.await(`Logging into TradingView...`);
-		this.loginToTradingView(Browser);
 	}
 
 	private async loginToTradingView(browser: Puppeteer.Browser) {
@@ -96,60 +81,49 @@ class StockTrader extends Module {
 			page = await browser.pages();
 
 		Logger.pending(`Heading to ${this.config.Puppet.initLink}`);
-		await page[0].goto(this.config.Puppet.initLink);
-
-		page[0].once("load", await execute);
+		page[0].goto(this.config.Puppet.initLink).then(execute);
 
 		async function execute() {
-			await self.tapEl("button[aria-label='Open user menu']", page[0]);
-			await self.tapEl("button[data-name='header-user-menu-sign-in']", page[0]);
-			await self.tapEl(".js-show-email", page[0]);
-			await self.typeEl("input[name='username']", page[0], Auth.TradingView.user);
-			await self.typeEl("input[name='password']", page[0], Auth.TradingView.pass);
-			await self.tapEl("button[type='submit']", page[0]);
-			//Sleep(2000);
+			await tapEl("button[aria-label='Open user menu']", page[0]);
+			await tapEl("button[data-name='header-user-menu-sign-in']", page[0]);
+			await tapEl(".js-show-email", page[0]);
+			await typeEl("input[name='username']", page[0], Auth.TradingView.user);
+			await typeEl("input[name='password']", page[0], Auth.TradingView.pass);
+			await tapEl("button[type='submit']", page[0]);
+			Sleep(2000);
 
 			Logger.await(`Opening Orders...`);
 			await self.openOrders(browser);
 		}
 
-		execute.name;
+		//execute.name;
 	}
 
 	private async openOrders(browser: Puppeteer.Browser) {
-		let self = this,
-			page = await browser.pages();
+		let page = await browser.pages();
 
 		Logger.pending(`Heading to ${this.config.Puppet.chartLink}`);
-		page[0].goto(this.config.Puppet.chartLink);
-
-		//page[0].once("load", execute);
+		page[0].goto(this.config.Puppet.chartLink).then(execute);
 
 		async function execute() {
 			try {
 				page[0].$("div[data-name='order-panel']");
 			} catch (e) {
-				await self.tapEl("div[data-name='order-panel-button']", page[0]);
+				Logger.error(`Order Button was already button somehow ???\n${e}`);
+				await tapEl("div[data-name='order-panel-button']", page[0]);
 			} finally {
 				Sleep(3000);
 				await (await page[0].$("div[data-broker='EIGHTCAP']")).hover();
 				Sleep(500);
-				await self.tapEl("div[data-broker='EIGHTCAP'] button span[class^='content']", page[0]);
-				await self.typeEl(
-					"div[data-name='broker-login-dialog'] input[id='username']",
-					page[0],
-					Auth.EightCap.user
-				);
-				await self.typeEl(
-					"div[data-name='broker-login-dialog'] input[id='password']",
-					page[0],
-					Auth.EightCap.pass
-				);
-				await self.tapEl("button[name='broker-login-submit-button']", page[0]);
+				await tapEl("div[data-broker='EIGHTCAP'] button span[class^='content']", page[0]);
+				await typeEl("div[data-name='broker-login-dialog'] input[id='username']", page[0], Auth.EightCap.user);
+				await typeEl("div[data-name='broker-login-dialog'] input[id='password']", page[0], Auth.EightCap.pass);
+				await tapEl("button[name='broker-login-submit-button']", page[0]);
 			}
+			Sleep(4000);
+			new OrderMaker(page[0]); //.buy().type("stoplimit"); //.sell().submit();
 		}
-
-		execute.name;
+		//execute.name;
 	}
 }
 

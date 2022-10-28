@@ -1,5 +1,5 @@
 {
-	"extends": "../../../tsconfig.json",
+	"extends": "../modules.tsconfig.json",
 	"compilerOptions": {
 		"tsBuildInfoFile": "../../../build/modules/stock-trader/.tsbuildinfo",
 		"composite": true

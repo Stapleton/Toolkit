@@ -1,5 +1,5 @@
 {
-	"extends": "../../../tsconfig.json",
+	"extends": "../modules.tsconfig.json",
 	"compilerOptions": {
 		"tsBuildInfoFile": "../../../build/modules/mass-ban-tool/.tsbuildinfo",
 		"composite": true

@@ -1,10 +1,10 @@
 /** @format */
 
-import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
-import { parse } from "toml";
-import { Module } from "@Core/lib/Module";
 import Toolkit from "@Toolkit";
 import { join } from "path";
+import { parse } from "toml";
+import { Module } from "@Core/lib/Module";
+import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
 
 export type ModName = string;
 export type ModID = string;

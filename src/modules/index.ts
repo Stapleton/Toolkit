@@ -16,16 +16,16 @@
 // ?: laid out as part of the UI so you can see in a tree who can do what
 
 /***** Imports *****/
-import { ChildProcess, fork } from "child_process";
 import Toolkit from "@Toolkit";
 import { join } from "path";
-import { existsSync, lstat, PathLike, readdirSync, readFileSync } from "fs";
-import { ModID, IModConfig } from "@Core/lib/ModConfig";
 import { parse } from "toml";
+import { ChildProcess, fork } from "child_process";
+import { ModID, IModConfig } from "@Core/lib/ModConfig";
+import { existsSync, lstat, PathLike, readdirSync, readFileSync } from "fs";
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods;
-Logger.start("Forking all modules!");
+Logger.start("Forking all enabled modules!");
 
 export let Forks: Map<ModID, ChildProcess> = new Map();
 

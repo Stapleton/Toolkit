@@ -5,10 +5,10 @@ import { Module } from "@Core/lib/Module";
 import { Signale } from "signale";
 import { ChildProcess } from "child_process";
 
-export type ToolkitWorker = "api" | "app" | "core" | "module";
+export type ToolkitDomain = "api" | "app" | "core" | "module";
 
 export interface ToolkitConfig {
-	disabled: ToolkitWorker[];
+	disabled: ToolkitDomain[];
 }
 
 class Toolkit {
@@ -28,7 +28,7 @@ class Toolkit {
 		Mods: new Signale({ scope: "Mods" }),
 	};
 
-	public Workers: Map<ToolkitWorker, ChildProcess> = new Map();
+	public Workers: Map<ToolkitDomain, ChildProcess> = new Map();
 	public Modules: Map<ModID, Module> = new Map();
 	public Configs: Map<ModID, ModConfig> = new Map();
 }
