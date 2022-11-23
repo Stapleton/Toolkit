@@ -9,12 +9,18 @@ import Toolkit from "@Toolkit";
 import { join } from "path";
 import { parse } from "toml";
 import { PathLike } from "fs";
-import { Module } from "@Core/lib/Module";
+import Module from "@Core/lib/Module";
+
+/***** Types *****/
+export type ModName = string;
+export type ModID = string;
+export type ModVersion = string;
+export type ModType = "lib" | "mod";
+export type ModRequires = "none" | Array<ModID>;
 
 /***** Interfaces *****/
-
 export interface IConfig {
-	name: Name;
+	name: ModName;
 	id: ModID;
 	version: ModVersion;
 	type: ModType;
@@ -28,7 +34,7 @@ Logger.start("Initializing");
 
 export class ConfigBuilder {
 	private RootDir: string = Toolkit.Paths.Config;
-	private Original: 
+	private Original: string;
 	private footer: string[];
 	private version: string;
 	private file: PathLike;
@@ -55,6 +61,8 @@ export class ConfigBuilder {
 		this.configDir = path.join(this.baseConfigDir, split.join("/"));
 		this.contents = `module.exports = {\n${this.indent}__META: {\n${this.indent}${this.indent}version: '${this.version}',\n${this.indent}${this.indent}name: '${this.configName}'\n${this.indent}}`;
 	}
+
+	
 
 	private writeConfig() {
 		let name = path.join(this.configDir, this.configName);

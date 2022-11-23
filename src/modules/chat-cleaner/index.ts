@@ -6,7 +6,7 @@
 
 /***** Imports *****/
 import Toolkit from "@Toolkit";
-import { Module } from "@Core/lib/Module";
+import Module from "@Core/lib/Module";
 import { IModConfig } from "@Core/lib/ModConfig";
 import { Info } from "@Mods/chat-cleaner/chat-cleaner.json";
 
@@ -15,7 +15,9 @@ interface ChatCleanerConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Chat Cleaner");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class ChatCleaner extends Module {
 	protected config = <ChatCleanerConfig>this._config.getConfig();

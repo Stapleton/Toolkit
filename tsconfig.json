@@ -45,6 +45,9 @@
 			],
 			"@Toolkit": [
 				"src/Toolkit.ts"
+			],
+			"@Auth": [
+				"config/auth.json"
 			]
 		},
 		"resolveJsonModule": true,
@@ -71,6 +74,10 @@
 	],
 	"files": [
 		"./src/Toolkit.ts",
+		"./src/core/lib/Module.ts",
+		"./src/core/lib/Sleep.ts",
+		"./src/core/lib/ModConfig.ts",
+		"./config/auth.json",
 		"./index.ts"
 	]
 }

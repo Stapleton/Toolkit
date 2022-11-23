@@ -27,6 +27,9 @@
 			"path": "./musicbot/musicbot.modules.tsconfig.json"
 		},
 		{
+			"path": "./positivity-gen/positivity-gen.modules.tsconfig.json"
+		},
+		{
 			"path": "./role-manager/role-manager.modules.tsconfig.json"
 		},
 		{

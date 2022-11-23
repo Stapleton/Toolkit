@@ -1,9 +1,9 @@
 /** @format */
 
-import ModConfig, { ModID } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
 import { Signale } from "signale";
+import Module from "@Core/lib/Module";
 import { ChildProcess } from "child_process";
+import ModConfig, { ModID } from "@Core/lib/ModConfig";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";
 

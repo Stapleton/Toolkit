@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
-import { Info } from "@Mods/role-manager/role-manager.json";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
+import { Info } from "@Mods/role-manager/role-manager.json";
 
 /***** Interfaces *****/
 interface RoleManagerConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Role Manager");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class RoleManager extends Module {
 	protected config = <RoleManagerConfig>this._config.getConfig();

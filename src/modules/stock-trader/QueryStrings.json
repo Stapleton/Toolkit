@@ -1,0 +1,49 @@
+{
+    "Login": {
+        "TradingView": {
+            "button": {
+                "UserMenu": "button[aria-label='Open user menu']",
+                "SignIn": "button[data-name='header-user-menu-sign-in']",
+                "Email": ".js-show-email",
+                "Submit": "button[type='submit']"
+            },
+            "input": {
+                "Username": "input[name='username']",
+                "Password": "input[name='password']"
+            }
+        },
+        "Broker": {
+            "grid": {
+                "OrderPanel": "div[data-name='order-panel']",
+                "EightCap": "div[data-broker='EIGHTCAP']"
+            },
+            "button": {
+                "OrderPanel": "div[data-name='order-panel-button']",
+                "EightCap": "div[data-broker='EIGHTCAP'] button span[class^='content']",
+                "Submit": "button[name='broker-login-submit-button']"
+            },
+            "input": {
+                "Username": "div[data-name='broker-login-dialog'] input[id='username']",
+                "Password": "div[data-name='broker-login-dialog'] input[id='password']"
+            }
+        }
+    },
+    "OrderMaker": {
+        "input": "input[class*='with-end-slot']",
+        "checkbox": "input[type='checkbox']",
+        "button": {
+            "OrderPanel": "div[data-name='order-panel-button']",
+            "Buy": "div[data-name='side-control-buy']",
+            "Sell": "div[data-name='side-control-sell']",
+            "Market": "div[data-value='2']",
+            "Limit": "div[data-value='1']",
+            "Stop": "div[data-value='3']",
+            "StopLimit": "div[data-value='4']",
+            "Submit": "div[class^='doneButton']"
+        }
+
+    },
+    "ChartReader": {
+
+    }
+}

@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
-import { Info } from "@Mods/musicbot/musicbot.json";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
+import { Info } from "@Mods/musicbot/musicbot.json";
 
 /***** Interfaces *****/
 interface MusicbotConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Musicbot");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class Musicbot extends Module {
 	protected config = <MusicbotConfig>this._config.getConfig();

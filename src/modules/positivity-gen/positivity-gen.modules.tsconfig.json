@@ -1,0 +1,14 @@
+{
+	"extends": "../modules.tsconfig.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "../../../build/modules/positivity-gen/.tsbuildinfo",
+		"composite": true
+	},
+	"include": [
+		"**/*"
+	],
+	"files": [
+		"../../Toolkit.ts",
+		"./positivity-gen.json"
+	]
+}

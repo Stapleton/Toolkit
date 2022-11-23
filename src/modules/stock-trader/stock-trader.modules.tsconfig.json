@@ -12,7 +12,8 @@
 		"../../../src/core/lib/Module.ts",
 		"../../../src/core/lib/Sleep.ts",
 		"../../../src/core/lib/ModConfig.ts",
+		"../../../config/auth.json",
 		"./stock-trader.json",
-		"./auth.json"
+		"./QueryStrings.json"
 	]
 }

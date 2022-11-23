@@ -4,15 +4,32 @@
  * @format
  */
 
+/***** Imports *****/
 import Toolkit from "@Toolkit";
 import { Page } from "puppeteer";
-
-/***** Imports *****/
+import { OrderMaker as QS } from "@Mods/stock-trader/QueryStrings.json";
+import { typeOneEl, clickEl, tapOneEl } from "@Mods/stock-trader/ElementAbuse";
 
 /***** Interfaces *****/
+type OrderType = "market" | "limit" | "stop" | "stoplimit";
 
+/*
+enum TPKeys {
+	ticks = 1,
+	price,
+	cad,
+	percent,
+}
+
+enum SLKeys {
+	ticks = 7,
+	price,
+	cad,
+	percent,
+}
+*/
 /***** Errors *****/
-class OrderMakerPanicError extends Error {
+class OrderMakerError extends Error {
 	constructor(why: string) {
 		super(why);
 	}
@@ -24,60 +41,99 @@ Logger.start("Initializing");
 
 export default class OrderMaker {
 	private page: Page;
+	private type: OrderType;
+	//private risk = false;
+
 	constructor(page: Page) {
 		this.page = page;
-		this.buy();
 	}
 
 	private panic(why: string) {
-		throw new OrderMakerPanicError(why);
+		throw new OrderMakerError(why);
 	}
 
 	public buy() {
-		this.page.click("div[data-name='side-control-buy']");
+		clickEl(QS.button.Buy, this.page);
 		return this;
 	}
 
 	public sell() {
-		this.page.click("div[data-name='side-control-buy']");
+		clickEl(QS.button.Sell, this.page);
 		return this;
 	}
 
-	public type(order: "market" | "limit" | "stop" | "stoplimit") {
-		let self = this;
+	public order(type: "market" | "limit" | "stop" | "stoplimit") {
+		let self = this; /*
 		function clickTab(dv: number, name: string) {
 			self.page.$(`div[data-type='tab-item' data-value='${dv}']`).then((elm) => {
 				if (!elm.toString().includes(name)) return self.panic(`${name} tab isn't the ${name} tab anymore`);
 				elm.click();
 			});
-		}
+		}*/
+		this.type = type;
 
 		this.page.waitForNavigation().then((_) => {});
 
-		switch (order) {
+		switch (type) {
 			case "market":
-				clickTab(2, "Market");
+				clickEl(QS.button.Market, this.page);
 				break;
 
 			case "limit":
-				clickTab(1, "Limit");
+				clickEl(QS.button.Limit, this.page);
 				break;
 
 			case "stop":
-				clickTab(3, "Stop");
+				clickEl(QS.button.Stop, this.page);
 				break;
 
 			case "stoplimit":
-				clickTab(4, "Stop Limit");
+				clickEl(QS.button.StopLimit, this.page);
 				break;
 
 			default:
-				self.panic(`'${order}' isn't a valid order type`);
+				self.panic(`'${type}' isn't a valid order type`);
 		}
+
+		return this;
+	}
+
+	public lots(count: number) {
+		if (this.type == "market") typeOneEl(QS.input, 0, this.page, String(count));
+		if (this.type == "limit" || "stop") typeOneEl(QS.input, 2, this.page, String(count));
+		if (this.type == "stoplimit") typeOneEl(QS.input, 4, this.page, String(count));
+		return this;
+	}
+
+	public setValue(index: number, amt: number) {
+		typeOneEl(QS.input, index, this.page, String(amt));
+		return this;
+	}
+
+	public stopLoss(CADRisk: number, PercentRisk: number) {
+		tapOneEl(QS.checkbox, 1, this.page);
+		//this.risk = true;
+
+		if (this.type == "market") {
+			typeOneEl(QS.input, 1, this.page, String(CADRisk));
+			typeOneEl(QS.input, 2, this.page, String(PercentRisk));
+		}
+
+		if (this.type == "limit" || "stop") {
+			typeOneEl(QS.input, 3, this.page, String(CADRisk));
+			typeOneEl(QS.input, 4, this.page, String(PercentRisk));
+		}
+
+		if (this.type == "stoplimit") {
+			typeOneEl(QS.input, 5, this.page, String(CADRisk));
+			typeOneEl(QS.input, 6, this.page, String(PercentRisk));
+		}
+
+		return this;
 	}
 
 	public submit() {
-		this.page.click("div[data-name='side-control-buy']");
+		clickEl(QS.button.Submit, this.page);
 		return this;
 	}
 }

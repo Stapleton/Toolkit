@@ -6,7 +6,7 @@
 
 /***** Imports *****/
 import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
+import Module from "@Core/lib/Module";
 import { Info } from "@Mods/text-to-speech/text-to-speech.json";
 import Toolkit from "@Toolkit";
 
@@ -15,7 +15,9 @@ interface TextToSpeechConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Text to Speech");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class TextToSpeech extends Module {
 	protected config = <TextToSpeechConfig>this._config.getConfig();

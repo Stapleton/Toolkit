@@ -3,7 +3,7 @@
 import Toolkit from "@Toolkit";
 import { join } from "path";
 import { parse } from "toml";
-import { Module } from "@Core/lib/Module";
+import Module from "@Core/lib/Module";
 import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
 
 export type ModName = string;
@@ -21,12 +21,18 @@ export interface IModConfig {
 	disabled: boolean;
 }
 
-// ? Change this config system to my old ConfigBuilder
-// ? https://github.com/Stapleton/Bot-Archive/blob/master/Alloybot-Core-Dec2018/lib/ConfigBuilder.ts
+// TODO: Compare config version with package version, update config version if older than package version
+// TODO: Add config fields programmatically, this will then prevent needing to package a config with differences and will cause config options to be added as needed
 
 export default class ModConfig {
 	private Config: IModConfig;
 	private Path: PathLike;
+
+	/**
+	 * An array of ModuleIDs that gets updated at startup during scan/init of all modules
+	 * Any Module found in the mods folder that doesnt have a matching Config
+	 * will show up in this list and will automatically have a default config generated for it.
+	 */
 	private NotInit: ModID[] = [];
 
 	constructor(mod: Module) {

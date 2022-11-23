@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
-import { Info } from "@Mods/jewguessr/jewguessr.json";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
+import { Info } from "@Mods/jewguessr/jewguessr.json";
 
 /***** Interfaces *****/
 interface JewguessrConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Jewguessr");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class Jewguessr extends Module {
 	protected config = <JewguessrConfig>this._config.getConfig();

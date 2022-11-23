@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
-import { Info } from "@Mods/discord/discord.json";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
+import { Info } from "@Mods/discord/discord.json";
 
 /***** Interfaces *****/
 interface DiscordConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Discord");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class Discord extends Module {
 	protected config = <DiscordConfig>this._config.getConfig();

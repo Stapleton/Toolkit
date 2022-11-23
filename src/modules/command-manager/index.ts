@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Module } from "@Core/lib/Module";
-import { Info } from "@Mods/command-manager/command-manager.json";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
+import { Info } from "@Mods/command-manager/command-manager.json";
 
 /***** Interfaces *****/
 interface CommandManagerConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Command Manager");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class CommandManager extends Module {
 	protected config = <CommandManagerConfig>this._config.getConfig();

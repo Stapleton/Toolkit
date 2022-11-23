@@ -8,12 +8,13 @@
 import Toolkit from "@Toolkit";
 import Puppeteer from "puppeteer";
 import Sleep from "@Core/lib/Sleep";
-import { Module } from "@Core/lib/Module";
-import { Auth } from "@Mods/stock-trader/auth.json";
+import Module from "@Core/lib/Module";
 import OrderMaker from "@Mods/stock-trader/OrderMaker";
+import { StockTrader as Auth } from "@Config/auth.json";
 import { Info } from "@Mods/stock-trader/stock-trader.json";
-import { tapEl, typeEl } from "@Mods/stock-trader/ElementAbuse";
+import { clickEl, typeEl } from "@Mods/stock-trader/ElementAbuse";
 import { IModConfig, ModRequires, ModType } from "@Core/lib/ModConfig";
+import { Login as LoginFlow } from "@Mods/stock-trader/QueryStrings.json";
 
 /***** Interfaces *****/
 interface StockTraderConfig extends IModConfig {
@@ -31,10 +32,11 @@ interface StockTraderConfig extends IModConfig {
 
 /***** Setup *****/
 const Logger = Toolkit.Logger.Mods.scope("Mod/Stock Trader");
-Logger.start("Initializing");
+Logger.start([`Initializing ${Info.name}`, `Module Version: ${Info.version}`, `Module ID: ${Info.id}`].join("\n"));
 
 class StockTrader extends Module {
 	protected config = <StockTraderConfig>this._config.getConfig();
+
 	constructor() {
 		super(Info.name, Info.id, Info.version, <ModType>Info.type, <ModRequires>Info.requires);
 
@@ -78,52 +80,54 @@ class StockTrader extends Module {
 
 	private async loginToTradingView(browser: Puppeteer.Browser) {
 		let self = this,
-			page = await browser.pages();
+			page = await browser.pages(),
+			QS = LoginFlow.TradingView;
 
 		Logger.pending(`Heading to ${this.config.Puppet.initLink}`);
 		page[0].goto(this.config.Puppet.initLink).then(execute);
 
 		async function execute() {
-			await tapEl("button[aria-label='Open user menu']", page[0]);
-			await tapEl("button[data-name='header-user-menu-sign-in']", page[0]);
-			await tapEl(".js-show-email", page[0]);
-			await typeEl("input[name='username']", page[0], Auth.TradingView.user);
-			await typeEl("input[name='password']", page[0], Auth.TradingView.pass);
-			await tapEl("button[type='submit']", page[0]);
+			await clickEl(QS.button.UserMenu, page[0]);
+			await clickEl(QS.button.SignIn, page[0]);
+			await clickEl(QS.button.Email, page[0]);
+			await typeEl(QS.input.Username, page[0], Auth.TradingView.user);
+			await typeEl(QS.input.Password, page[0], Auth.TradingView.pass);
+			await clickEl(QS.button.Submit, page[0]);
 			Sleep(2000);
 
 			Logger.await(`Opening Orders...`);
-			await self.openOrders(browser);
+			await self.loginToBroker(browser);
 		}
 
 		//execute.name;
 	}
 
-	private async openOrders(browser: Puppeteer.Browser) {
-		let page = await browser.pages();
+	private async loginToBroker(browser: Puppeteer.Browser) {
+		let page = await browser.pages(),
+			QS = LoginFlow.Broker;
 
 		Logger.pending(`Heading to ${this.config.Puppet.chartLink}`);
 		page[0].goto(this.config.Puppet.chartLink).then(execute);
 
 		async function execute() {
 			try {
-				page[0].$("div[data-name='order-panel']");
+				page[0].$(QS.grid.OrderPanel);
 			} catch (e) {
 				Logger.error(`Order Button was already button somehow ???\n${e}`);
-				await tapEl("div[data-name='order-panel-button']", page[0]);
+				clickEl(QS.button.OrderPanel, page[0]);
 			} finally {
 				Sleep(3000);
-				await (await page[0].$("div[data-broker='EIGHTCAP']")).hover();
+				await (await page[0].$(QS.grid.EightCap)).hover();
 				Sleep(500);
-				await tapEl("div[data-broker='EIGHTCAP'] button span[class^='content']", page[0]);
-				await typeEl("div[data-name='broker-login-dialog'] input[id='username']", page[0], Auth.EightCap.user);
-				await typeEl("div[data-name='broker-login-dialog'] input[id='password']", page[0], Auth.EightCap.pass);
-				await tapEl("button[name='broker-login-submit-button']", page[0]);
+				await clickEl(QS.button.EightCap, page[0]);
+				await typeEl(QS.input.Username, page[0], Auth.EightCap.user);
+				await typeEl(QS.input.Password, page[0], Auth.EightCap.pass);
+				await clickEl(QS.button.Submit, page[0]);
 			}
 			Sleep(4000);
-			new OrderMaker(page[0]); //.buy().type("stoplimit"); //.sell().submit();
+			new OrderMaker(page[0]).buy().order("stoplimit").lots(1000).setValue(6, 10000).setValue(0, 12000);
+			//execute.name;
 		}
-		//execute.name;
 	}
 }
 

@@ -4,27 +4,23 @@
 import Toolkit from "@Toolkit";
 import Module from "@Core/lib/Module";
 import { IModConfig } from "@Core/lib/ModConfig";
-import { Info } from "@Mods/sandbox/sandbox.json";
+import { Info } from "@Mods/positivity-gen/positivity-gen.json";
 
 /***** Interfaces *****/
-interface SandboxConfig extends IModConfig {}
+interface PositivityGeneratorConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Sandbox");
+let Logger = Toolkit.Logger.Mods.scope(`Mods/${Info.id}`); // Finish Logger Definition
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);
 
-class Sandbox extends Module {
-	protected config = <SandboxConfig>this._config.getConfig();
+class PositivityGenerator extends Module {
+	protected config = <PositivityGeneratorConfig>this._config.getConfig();
 
 	constructor() {
 		super(Info.name, Info.id, Info.version);
-
-		Logger.disable();
-		Logger.debug(this.config);
-		Logger.enable();
 	}
 }
 
-new Sandbox();
+new PositivityGenerator();

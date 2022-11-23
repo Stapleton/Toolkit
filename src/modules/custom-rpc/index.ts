@@ -5,17 +5,19 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
 import Toolkit from "@Toolkit";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
 import { Info } from "@Mods/custom-rpc/custom-rpc.json";
-import { Module } from "@Core/lib/Module";
 
 /***** Interfaces *****/
 interface CustomRPCConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mod/Custom RPC");
-Logger.start("Initializing");
+Logger.start(`Initializing ${Info.name}
+Module Version: ${Info.version}
+Module ID: ${Info.id}`);
 
 class CustomRPC extends Module {
 	protected config = <CustomRPCConfig>this._config.getConfig();

@@ -7,10 +7,22 @@ export async function typeEl(query: string, page: Puppeteer.Page, text: string):
 	Sleep(500);
 }
 
-export async function tapEl(query: string, page: Puppeteer.Page): Promise<void> {
-	let t = page.touchscreen;
-	await t.tap(...(await getElPos(query, page)));
+export function typeOneEl(queryAll: string, el: number, page: Puppeteer.Page, text: string) {
+	page.$$(queryAll).then((_) => {
+		_[el].type(text);
+	});
+}
+
+export async function clickEl(query: string, page: Puppeteer.Page): Promise<void> {
+	let m = page.mouse;
+	await m.click(...(await getElPos(query, page)));
 	Sleep(500);
+}
+
+export function tapOneEl(queryAll: string, el: number, page: Puppeteer.Page) {
+	page.$$(queryAll).then((_) => {
+		_[el].click();
+	});
 }
 
 // * This is a fucking godsend

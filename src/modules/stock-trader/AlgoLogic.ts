@@ -5,11 +5,12 @@
  */
 
 /***** Imports *****/
-import Module, { ModConfig } from "@Core/lib/Module";
-import Toolkit from "@Toolkit";
-import { readFileSync } from "fs";
-import { Signale } from "signale";
 import * as toml from "toml";
+import Toolkit from "@Toolkit";
+import { Signale } from "signale";
+import { readFileSync } from "fs";
+import Module from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/ModConfig";
 
 /***** Types *****/
 type Gradient = {
@@ -19,7 +20,7 @@ type Gradient = {
 
 /***** Interfaces *****/
 
-interface StockTraderConfig extends ModConfig {
+interface StockTraderConfig extends IModConfig {
 	algo: {
 		spread: "even" | "exp";
 		metric: "points" | "dollars";
