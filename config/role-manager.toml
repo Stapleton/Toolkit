@@ -1,6 +1,0 @@
-name = "Role Manager"
-id = "role-manager"
-version = "0.0.0"
-type = "mod"
-requires = "none"
-disabled = true

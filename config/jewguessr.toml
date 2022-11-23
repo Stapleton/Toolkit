@@ -1,6 +1,0 @@
-name = "Jewguessr"
-id = "jewguessr"
-version = "0.0.0"
-type = "mod"
-requires = "none"
-disabled = true
