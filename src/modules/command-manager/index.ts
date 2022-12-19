@@ -14,7 +14,7 @@ import { Info } from "@Mods/command-manager/command-manager.json";
 interface CommandManagerConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Command Manager");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Command Manager");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

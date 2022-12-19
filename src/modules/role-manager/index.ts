@@ -14,7 +14,7 @@ import { Info } from "@Mods/role-manager/role-manager.json";
 interface RoleManagerConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Role Manager");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Role Manager");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

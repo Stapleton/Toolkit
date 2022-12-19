@@ -1,0 +1,6 @@
+*.html
+
+typings
+build
+config
+.vscode/

@@ -14,7 +14,7 @@ import { Info } from "@Mods/custom-rpc/custom-rpc.json";
 interface CustomRPCConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Custom RPC");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Custom RPC");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

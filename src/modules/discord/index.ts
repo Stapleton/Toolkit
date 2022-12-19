@@ -14,7 +14,7 @@ import { Info } from "@Mods/discord/discord.json";
 interface DiscordConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Discord");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Discord");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

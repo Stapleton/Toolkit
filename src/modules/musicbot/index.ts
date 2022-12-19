@@ -14,7 +14,7 @@ import { Info } from "@Mods/musicbot/musicbot.json";
 interface MusicbotConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Musicbot");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Musicbot");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

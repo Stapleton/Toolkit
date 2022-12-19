@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title>Toolkit</title>
+		<script src="./js/ws.js"></script>
+		<link href="./css/index.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="main">
+			<div id="WS">
+				<label for="WSHost">WS Hostname</label>
+				<input type="text" id="WSHost" name="WSHost" required>
+				<input type="text" id="WSPort" name="WSPort" required>
+				<button id="WSConnect" type="submit" onclick="connect()">Connect!</button>
+				<p id="WSStatus" class="red">Disconnected.</p>
+				<label for="WSMsg">Send Message</label>
+				<input type="text" id="WSMsg" name="WSMsg">
+				<button id="WSSend" type="submit" onclick="sendMsg()">Send</button>
+				<div id="WSHistory"></div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,6 +1,6 @@
 /** @format */
 
-import Toolkit from "@Toolkit";
+import { InitLogger, __TKConfigs } from "@Toolkit";
 import { join } from "path";
 import { parse } from "toml";
 import Module from "@Core/lib/Module";
@@ -13,12 +13,12 @@ export type ModType = "lib" | "mod";
 export type ModRequires = "none" | Array<ModID>;
 
 export interface IModConfig {
-	name: ModName;
-	id: ModID;
-	version: ModVersion;
-	type: ModType;
-	requires: ModRequires;
-	disabled: boolean;
+	_name: ModName;
+	_id: ModID;
+	_version: ModVersion;
+	_type: ModType;
+	_requires: ModRequires;
+	_disabled: boolean;
 }
 
 // TODO: Compare config version with package version, update config version if older than package version
@@ -36,14 +36,14 @@ export default class ModConfig {
 	private NotInit: ModID[] = [];
 
 	constructor(mod: Module) {
-		this.Path = join(Toolkit.Paths.Config, `${mod.getID()}.toml`);
+		this.Path = join(process.cwd(), "config", `${mod.getID()}.toml`);
 
 		//Toolkit.Logger.Core.debug(this.Path);
 
 		if (existsSync(this.Path)) {
 			this.setConfig(mod.getID());
 		} else {
-			Toolkit.Logger.Core.star(`Created Config for ${mod.getName()}`);
+			InitLogger.create(`New Config for ${mod.getName()}`);
 			this.makeConfig();
 			this.NotInit.push(mod.getID());
 		}
@@ -61,13 +61,22 @@ export default class ModConfig {
 	}
 
 	private parseConfig(text: string): IModConfig {
-		return parse(text);
+		let config = parse(text);
+		return {
+			_name: config.name,
+			_id: config.id,
+			_version: config.version,
+			_type: config.type,
+			_requires: config.requires,
+			_disabled: config.disabled,
+			...config,
+		};
 	}
 
 	private setConfig(id: ModID) {
 		let data = this.readFile(this.Path);
 		this.Config = this.parseConfig(data);
-		Toolkit.Configs.set(id, this);
+		__TKConfigs.set(id, this);
 	}
 
 	public getConfig() {
@@ -85,7 +94,8 @@ export default class ModConfig {
 		type: ModType = "mod",
 		requires: ModRequires = "none"
 	) {
-		let data = `name = "${name}"
+		let data = `[module]
+name = "${name}"
 id = "${id}"
 version = "${version}"
 type = "${type}"
@@ -98,6 +108,6 @@ disabled = false`;
 		delete this.NotInit[a];
 		this.setConfig(id);
 
-		Toolkit.Logger.Core.star(`Initialized Config for ${name}`);
+		InitLogger.create(`Initialized Config for ${name}`);
 	}
 }

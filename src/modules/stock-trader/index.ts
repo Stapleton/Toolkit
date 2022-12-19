@@ -31,7 +31,7 @@ interface StockTraderConfig extends IModConfig {
 }
 
 /***** Setup *****/
-const Logger = Toolkit.Logger.Mods.scope("Mod/Stock Trader");
+const Logger = Toolkit.Logger.Mods.scope("Mods.Stock Trader");
 Logger.start([`Initializing ${Info.name}`, `Module Version: ${Info.version}`, `Module ID: ${Info.id}`].join("\n"));
 
 class StockTrader extends Module {
@@ -125,7 +125,7 @@ class StockTrader extends Module {
 				await clickEl(QS.button.Submit, page[0]);
 			}
 			Sleep(4000);
-			new OrderMaker(page[0]).buy().order("stoplimit").lots(1000).setValue(6, 10000).setValue(0, 12000);
+			new OrderMaker(page[0]).buy().order("stoplimit").lots(1).setValue(6, 10000).setValue(0, 12000);
 			//execute.name;
 		}
 	}

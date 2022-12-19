@@ -14,7 +14,7 @@ import { Info } from "@Mods/jewguessr/jewguessr.json";
 interface JewguessrConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Jewguessr");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Jewguessr");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

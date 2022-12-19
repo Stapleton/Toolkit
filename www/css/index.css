@@ -1,0 +1,21 @@
+body {
+    width: 1280;
+    height: 800;
+    background-color: #707070
+}
+
+#WSPort {
+    width: 46px;
+}
+
+#WSHost {
+    width: 110px;
+}
+
+.red {
+    background-color: darkred;
+}
+
+.green {
+    background-color: green;
+}

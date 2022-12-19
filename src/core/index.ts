@@ -8,20 +8,70 @@
 /***** Imports *****/
 import { join } from "path";
 import Toolkit from "@Toolkit";
-import { existsSync, writeFileSync } from "fs";
 import { Signale } from "signale";
+import Module from "@Core/lib/Module";
+import { existsSync, writeFileSync } from "fs";
+import UDPSocketServer from "@Core/net/UDPSocketServer";
+import WebSocketServer from "@Core/net/WebSocketServer";
+import { IModConfig } from "@Core/lib/ModConfig";
+
+/***** Interfaces *****/
+interface CoreNetConfig extends IModConfig {
+	UDPSS: {
+		port: number;
+		host: string;
+	};
+	WSS: {
+		port: number;
+		host: string;
+	};
+}
 
 /***** Setup *****/
 export const Logger = new Signale({ scope: "Core" });
 
 Logger.start("Initializing");
 
-function makeAuth() {
+/***** Check/Make Authentication Storage JSON *****/
+function checkAuth() {
 	let p = join(Toolkit.Paths.Config, "auth.json");
-	if (existsSync(p)) return;
 
-	writeFileSync(p, "{}", "utf-8");
-	Logger.star(`Created new auth.json in config folder!`);
+	function makeAuth() {
+		writeFileSync(p, "{}", "utf-8");
+		Logger.star(`Created new auth.json in config folder!`);
+	}
+
+	if (!existsSync(p)) makeAuth();
 }
 
-makeAuth();
+checkAuth();
+
+/***** Setup CoreNet Servers *****/
+class CoreNet extends Module {
+	private static INSTANCE: CoreNet;
+	private readonly Logger = Toolkit.Logger.Core.scope("Core.Net");
+	private readonly Config = <CoreNetConfig>this._config.getConfig();
+
+	private constructor() {
+		super("Core.Net", "core.net", "0.0.1", "lib", ["toolkit"]);
+		this.Logger.start("Initializing");
+
+		this.startUDPSS();
+		this.startWSS();
+	}
+
+	public static getInstance() {
+		if (!this.INSTANCE) this.INSTANCE = new CoreNet();
+		return this.INSTANCE;
+	}
+
+	private startUDPSS() {
+		UDPSocketServer.getInstance(this.Config.UDPSS);
+	}
+
+	private startWSS() {
+		WebSocketServer.getInstance(this.Config.WSS);
+	}
+}
+
+CoreNet.getInstance();

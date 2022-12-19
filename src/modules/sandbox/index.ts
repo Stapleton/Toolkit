@@ -10,7 +10,7 @@ import { Info } from "@Mods/sandbox/sandbox.json";
 interface SandboxConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Sandbox");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Sandbox");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

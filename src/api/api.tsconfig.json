@@ -8,7 +8,6 @@
 		"**/*"
 	],
 	"files": [
-		"../Toolkit.ts",
-		"../../src/core/error/UDPSocketServerError.ts"
+		"../Toolkit.ts"
 	]
 }

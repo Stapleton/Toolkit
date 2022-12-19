@@ -29,13 +29,13 @@ Logger.start("Forking all enabled modules!");
 
 export let Forks: Map<ModID, ChildProcess> = new Map();
 
-function disabled(id: ModID) {
+/*function disabled(id: ModID) {
 	let path = join(Toolkit.Paths.Config, `${id}.toml`);
 	if (!existsSync(path)) return false;
 	let text = readFileSync(path, "utf8");
 	let config: IModConfig = parse(text);
-	return config.disabled;
-}
+	return config._disabled;
+}*/
 
 function ModuleLoader(directory: PathLike) {
 	// Get "direcory" stats
@@ -51,7 +51,7 @@ function ModuleLoader(directory: PathLike) {
 				d = join(directory.toString(), f);
 
 				if (f.includes(".")) continue;
-				if (disabled(f)) continue;
+				//if (disabled(f)) continue;
 				Forks.set(f, fork(join(d, "index.ts"), { serialization: "advanced" }));
 			}
 		}

@@ -14,7 +14,7 @@ import { Info } from "@Mods/mass-ban-tool/mass-ban-tool.json";
 interface MassBanToolConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Mass Ban Tool");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Mass Ban Tool");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

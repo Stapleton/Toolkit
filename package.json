@@ -18,15 +18,19 @@
 	},
 	"homepage": "https://github.com/Stapleton/toolkit#readme",
 	"dependencies": {
+		"bufferutil": "^4.0.7",
 		"dotenv": "^16.0.3",
 		"puppeteer": "^18.0.5",
 		"signale": "^1.4.0",
 		"toml": "^3.0.0",
-		"ts-node": "^10.9.1"
+		"ts-node": "^10.9.1",
+		"utf-8-validate": "^5.0.10",
+		"ws": "^8.11.0"
 	},
 	"devDependencies": {
 		"@types/node": "^18.7.14",
 		"@types/signale": "^1.4.4",
+		"@types/ws": "^8.5.3",
 		"prettier": "2.6.2",
 		"tsconfig-paths": "^4.1.0",
 		"tslib": "^2.4.0"

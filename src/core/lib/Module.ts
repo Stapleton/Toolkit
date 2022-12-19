@@ -2,7 +2,7 @@
 
 import ModConfig, { ModName, ModID, ModVersion, ModType, ModRequires } from "@Core/lib/ModConfig";
 import EventEmitter from "events";
-import Toolkit from "@Toolkit";
+import { InitLogger, __TKModules } from "@Toolkit";
 
 export default class Module extends EventEmitter {
 	protected _name: ModName;
@@ -22,13 +22,13 @@ export default class Module extends EventEmitter {
 		this._config = new ModConfig(this);
 
 		if (this._config.notInit(id)) this._config.init(name, id, version);
-		if (this._config.getConfig().disabled) this.disabledMod(5);
+		if (this._config.getConfig()._disabled) this.disabledMod(5);
 
-		Toolkit.Modules.set(this.id, this);
+		__TKModules.set(this.id, this);
 	}
 
 	protected disabledMod(exitcode: number) {
-		Toolkit.Logger.Mods.complete(`${this._name} is disabled.`);
+		InitLogger.disabled(`${this._name} is disabled.`);
 		process.exit(exitcode);
 	}
 

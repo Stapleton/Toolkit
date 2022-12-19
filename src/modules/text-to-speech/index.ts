@@ -14,7 +14,7 @@ import Toolkit from "@Toolkit";
 interface TextToSpeechConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Text to Speech");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Text to Speech");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);

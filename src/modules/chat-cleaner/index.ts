@@ -14,7 +14,7 @@ import { Info } from "@Mods/chat-cleaner/chat-cleaner.json";
 interface ChatCleanerConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mod/Chat Cleaner");
+let Logger = Toolkit.Logger.Mods.scope("Mods.Chat Cleaner");
 Logger.start(`Initializing ${Info.name}
 Module Version: ${Info.version}
 Module ID: ${Info.id}`);
