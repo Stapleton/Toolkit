@@ -18,6 +18,9 @@
 			"path": "./discord/discord.modules.tsconfig.json"
 		},
 		{
+			"path": "./examplemod/examplemod.modules.tsconfig.json"
+		},
+		{
 			"path": "./jewguessr/jewguessr.modules.tsconfig.json"
 		},
 		{

@@ -1,9 +1,9 @@
 /** @format */
 
 import { Signale } from "signale";
-import Module from "@Core/lib/Module";
-import { ChildProcess } from "child_process";
-import ModConfig, { IModConfig, ModID } from "@Core/lib/ModConfig";
+import Module, { __TKModules } from "@Core/lib/Module";
+import { ChildProcess, fork } from "child_process";
+import { IModConfig, __TKConfigs } from "@Core/lib/ModConfig";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";
 
@@ -58,12 +58,10 @@ export const SignaleOpts = {
 	},
 };
 
-export var InitLogger = new Signale(SignaleOpts);
-export var __TKConfigs: Map<ModID, ModConfig> = new Map();
-export var __TKModules: Map<ModID, Module> = new Map();
-
 class Toolkit extends Module {
 	public readonly Config = <ToolkitConfig>this._config.getConfig();
+
+	private static INSTANCE: Toolkit;
 
 	public Paths = {
 		Config: `${process.cwd()}\\config`,
@@ -85,11 +83,20 @@ class Toolkit extends Module {
 	public Modules = __TKConfigs;
 	public Configs = __TKConfigs;
 
-	constructor() {
+	private constructor() {
 		super("Toolkit", "toolkit", "0.0.1", "lib", "none");
+	}
+
+	public static getInstance() {
+		if (!this.INSTANCE) {
+			this.INSTANCE = new this();
+		}
+		return this.INSTANCE;
 	}
 }
 
 //Loggers.Global.info(Toolkit.Paths.Config);
 
-export default new Toolkit();
+const TK = Toolkit.getInstance();
+
+export default TK;

@@ -78,6 +78,6 @@
 		"src/core/lib/Sleep.ts",
 		"src/core/lib/ModConfig.ts",
 		"./config/auth.json",
-		"./index.ts"
+		"./src/index.ts"
 	]
 }

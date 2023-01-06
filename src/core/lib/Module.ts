@@ -1,8 +1,20 @@
 /** @format */
 
 import ModConfig, { ModName, ModID, ModVersion, ModType, ModRequires } from "@Core/lib/ModConfig";
+import { Signale } from "signale";
 import EventEmitter from "events";
-import { InitLogger, __TKModules } from "@Toolkit";
+
+export var __TKModules: Map<ModID, Module> = new Map();
+
+const Logger = new Signale({
+	types: {
+		disabled: {
+			label: "Disabled",
+			color: "grey",
+			badge: "❌",
+		},
+	},
+});
 
 export default class Module extends EventEmitter {
 	protected _name: ModName;
@@ -28,7 +40,7 @@ export default class Module extends EventEmitter {
 	}
 
 	protected disabledMod(exitcode: number) {
-		InitLogger.disabled(`${this._name} is disabled.`);
+		Logger.disabled(`${this._name} is disabled.`);
 		process.exit(exitcode);
 	}
 

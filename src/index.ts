@@ -1,10 +1,16 @@
-/** @format */
+/**
+ * ** Imports ****
+ *
+ * @format
+ */
 
+import { fork, exec } from "child_process";
 import Toolkit from "@Toolkit";
-import { fork } from "child_process";
+
+/***** Setup *****/
 
 if (!Toolkit.Config.Api.disabled) Toolkit.Workers.set("api", fork("./src/api/index.ts", { serialization: "advanced" }));
-if (!Toolkit.Config.App.disabled) Toolkit.Workers.set("app", fork("./src/app/index.ts", { serialization: "advanced" }));
+if (!Toolkit.Config.App.disabled) Toolkit.Workers.set("app", exec("electron ./src/app/main.js"));
 if (!Toolkit.Config.Core.disabled)
 	Toolkit.Workers.set("core", fork("./src/core/index.ts", { serialization: "advanced" }));
 if (!Toolkit.Config.Module.disabled)

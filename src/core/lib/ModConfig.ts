@@ -1,10 +1,12 @@
 /** @format */
 
-import { InitLogger, __TKConfigs } from "@Toolkit";
 import { join } from "path";
 import { parse } from "toml";
+import { Signale } from "signale";
 import Module from "@Core/lib/Module";
 import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
+
+export var __TKConfigs: Map<ModID, ModConfig> = new Map();
 
 export type ModName = string;
 export type ModID = string;
@@ -23,6 +25,16 @@ export interface IModConfig {
 
 // TODO: Compare config version with package version, update config version if older than package version
 // TODO: Add config fields programmatically, this will then prevent needing to package a config with differences and will cause config options to be added as needed
+
+const Logger = new Signale({
+	types: {
+		create: {
+			label: "Create",
+			color: "yellow",
+			badge: "✨",
+		},
+	},
+});
 
 export default class ModConfig {
 	private Config: IModConfig;
@@ -43,7 +55,7 @@ export default class ModConfig {
 		if (existsSync(this.Path)) {
 			this.setConfig(mod.getID());
 		} else {
-			InitLogger.create(`New Config for ${mod.getName()}`);
+			Logger.create(`New Config for ${mod.getName()}`);
 			this.makeConfig();
 			this.NotInit.push(mod.getID());
 		}
@@ -108,6 +120,6 @@ disabled = false`;
 		delete this.NotInit[a];
 		this.setConfig(id);
 
-		InitLogger.create(`Initialized Config for ${name}`);
+		Logger.create(`Initialized Config for ${name}`);
 	}
 }

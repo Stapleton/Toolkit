@@ -2,10 +2,10 @@
 	"name": "toolkit",
 	"version": "0.0.0",
 	"description": "So many tools",
-	"main": "index.ts",
+	"main": "./src/app/main.js",
 	"scripts": {
 		"test": "echo \"your mom is gay\";",
-		"start": "node -r ts-node/register -r tsconfig-paths/register ./index.ts"
+		"start": "node -r ts-node/register -r tsconfig-paths/register ./src/index.ts"
 	},
 	"repository": {
 		"type": "git",
@@ -31,6 +31,7 @@
 		"@types/node": "^18.7.14",
 		"@types/signale": "^1.4.4",
 		"@types/ws": "^8.5.3",
+		"electron": "^22.0.0",
 		"prettier": "2.6.2",
 		"tsconfig-paths": "^4.1.0",
 		"tslib": "^2.4.0"

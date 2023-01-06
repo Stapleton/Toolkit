@@ -2,7 +2,7 @@
 
 let host, port, stat, mesg, hist, WS;
 
-function setup() {
+function setup(callback) {
 	host = document.querySelector("#WSHost");
 	port = document.querySelector("#WSPort");
 	stat = document.querySelector("#WSStatus");
