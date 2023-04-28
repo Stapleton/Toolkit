@@ -54,8 +54,7 @@
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"target": "ESNext",
-		"tsBuildInfoFile": "./build/.tsbuildinfo",
-		"watch": false
+		"tsBuildInfoFile": "./build/.tsbuildinfo"
 	},
 	"references": [
 		{

@@ -11,7 +11,7 @@ function Recursor(directory) {
 			// Get all files in "directory"
 			let directoryList = fs.readdirSync(directory);
 			for (let file in directoryList) {
-				new Recursor(path.join(directory, directoryList[file]));
+				Recursor(path.join(directory, directoryList[file]));
 			}
 		} else {
 			let f = path.parse(directory);
@@ -19,9 +19,10 @@ function Recursor(directory) {
 			//if (disabled(f)) continue;
 			//console.log(f);
 			if (f.ext != ".mts") return;
-			fs.renameSync(`${directory}`, `${path.join(f.root, f.dir, `${f.name}.ts`)}`);
+			let name = `${f.name}.ts`;
+			fs.renameSync(`${directory}`, `${path.join(f.root, f.dir, name)}`);
 		}
 	});
 }
 
-new Recursor("./src");
+Recursor("./src");

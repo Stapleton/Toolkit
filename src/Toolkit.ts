@@ -1,9 +1,8 @@
 /** @format */
 
 import { Signale } from "signale";
-import { Module, __TKModules } from "@Core/lib/Module";
-import { ChildProcess, fork } from "child_process";
-import { IModConfig, __TKConfigs } from "@Core/lib/Module";
+import { Module, IModConfig, __TKConfigs } from "@Core/lib/Module";
+import { ChildProcess } from "child_process";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";
 
@@ -94,8 +93,6 @@ class Toolkit extends Module {
 		return this.INSTANCE;
 	}
 }
-
-//Loggers.Global.info(Toolkit.Paths.Config);
 
 const TK = Toolkit.getInstance();
 
