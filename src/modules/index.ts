@@ -11,23 +11,18 @@
 
 // ?: The old musicbot will be built into its own module and hosted from the Toolkit
 
-// ?: A better Discord permisison manager will be added at some point.
-// ?: Something that will kinda mimic discord's manager but has channel permission info and a permission hierarchy
-// ?: laid out as part of the UI so you can see in a tree who can do what
-
 /***** Imports *****/
 import Toolkit from "@Toolkit";
 import { join } from "path";
-import { parse } from "toml";
 import { ChildProcess, fork } from "child_process";
-import { ModID, IModConfig } from "@Core/lib/ModConfig";
-import { existsSync, lstat, PathLike, readdirSync, readFileSync } from "fs";
+import { IModule } from "@Core/lib/Module";
+import { lstat, PathLike, readdirSync, readFileSync } from "fs";
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods;
 Logger.start("Forking all enabled modules!");
 
-export let Forks: Map<ModID, ChildProcess> = new Map();
+export let Forks: Map<IModule.ModID, ChildProcess> = new Map();
 
 /*function disabled(id: ModID) {
 	let path = join(Toolkit.Paths.Config, `${id}.toml`);

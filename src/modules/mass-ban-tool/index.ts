@@ -6,8 +6,7 @@
 
 /***** Imports *****/
 import Toolkit from "@Toolkit";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
+import { IModConfig, Module } from "@Core/lib/Module";
 import { Info } from "@Mods/mass-ban-tool/mass-ban-tool.json";
 
 /***** Interfaces *****/

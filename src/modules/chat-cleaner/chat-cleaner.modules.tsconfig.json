@@ -6,7 +6,7 @@
 	},
 	"include": [
 		"**/*"
-	],
+, "../stock-trader"	],
 	"files": [
 		"../../Toolkit.ts",
 		"./chat-cleaner.json"

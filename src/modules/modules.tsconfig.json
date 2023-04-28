@@ -1,8 +1,9 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"tsBuildInfoFile": "../../build/modules/.tsbuildinfo",
-		"composite": true
+		"tsBuildInfoFile": "../../build/src/modules/.tsbuildinfo",
+		"composite": true,
+		"declarationDir": "../../typings/src"
 	},
 	"references": [
 		{
@@ -48,8 +49,6 @@
 	"files": [
 		"index.ts",
 		"../Toolkit.ts",
-		"../core/lib/ModConfig.ts",
 		"../core/lib/Module.ts"
-	],
-	"_comment": "// TODO: Make all of the modules tsconfigs extend this one, I hope that this will allow for each module project to better interact with other modules when it comes to cross module imports"
+	]
 }

@@ -1,8 +1,9 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"tsBuildInfoFile": "../../build/api/.tsbuildinfo",
-		"composite": true
+		"tsBuildInfoFile": "../../build/src/api/.tsbuildinfo",
+		"composite": true,
+		"declarationDir": "../../typings/src"
 	},
 	"include": [
 		"**/*"

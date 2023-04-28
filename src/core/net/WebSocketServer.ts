@@ -57,3 +57,11 @@ class WebSocketServer extends WSS {
 }
 
 export default WebSocketServer;
+
+class Socket {}
+
+/**
+ * TODO: Implement Socket.io for Websocket Server
+ * make a class that contructs with a room name
+ *
+ */

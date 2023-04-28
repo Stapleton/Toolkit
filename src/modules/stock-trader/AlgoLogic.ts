@@ -9,8 +9,8 @@ import * as toml from "toml";
 import Toolkit from "@Toolkit";
 import { Signale } from "signale";
 import { readFileSync } from "fs";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
+import { Module } from "@Core/lib/Module";
+import { IModConfig } from "@Core/lib/Module";
 
 /***** Types *****/
 type Gradient = {

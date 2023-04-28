@@ -13,7 +13,7 @@ function setup(callback) {
 setup();
 
 function connect() {
-	WS = new WebSocket(`ws://${host.value}:${port.value}`);
+	WS = new WebSocket(`wss://${host.value}:${port.value}`);
 	WS.addEventListener("open", update);
 
 	function update() {

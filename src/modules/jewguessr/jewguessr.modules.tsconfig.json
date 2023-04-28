@@ -9,6 +9,9 @@
 	],
 	"files": [
 		"../../Toolkit.ts",
-		"./jewguessr.json"
+		"./jewguessr.json",
+		"./ScrapeIMDB.ts",
+		"./SPARQLQueryDispatcher.ts",
+		"./Validator.ts"
 	]
 }

@@ -5,7 +5,7 @@
  */
 
 import { fork, exec } from "child_process";
-import Toolkit from "@Toolkit";
+import Toolkit from "./Toolkit";
 
 /***** Setup *****/
 

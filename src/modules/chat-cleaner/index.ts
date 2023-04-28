@@ -6,8 +6,7 @@
 
 /***** Imports *****/
 import Toolkit from "@Toolkit";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
+import { Module, IModConfig } from "@Core/lib/Module";
 import { Info } from "@Mods/chat-cleaner/chat-cleaner.json";
 
 /***** Interfaces *****/

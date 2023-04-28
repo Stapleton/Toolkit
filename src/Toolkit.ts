@@ -1,9 +1,9 @@
 /** @format */
 
 import { Signale } from "signale";
-import Module, { __TKModules } from "@Core/lib/Module";
+import { Module, __TKModules } from "@Core/lib/Module";
 import { ChildProcess, fork } from "child_process";
-import { IModConfig, __TKConfigs } from "@Core/lib/ModConfig";
+import { IModConfig, __TKConfigs } from "@Core/lib/Module";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";
 
@@ -59,7 +59,7 @@ export const SignaleOpts = {
 };
 
 class Toolkit extends Module {
-	public readonly Config = <ToolkitConfig>this._config.getConfig();
+	public readonly Config = this._config.getConfig() as ToolkitConfig;
 
 	private static INSTANCE: Toolkit;
 

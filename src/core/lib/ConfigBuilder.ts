@@ -9,24 +9,7 @@ import Toolkit from "@Toolkit";
 import { join } from "path";
 import { parse } from "toml";
 import { PathLike } from "fs";
-import Module from "@Core/lib/Module";
-
-/***** Types *****/
-export type ModName = string;
-export type ModID = string;
-export type ModVersion = string;
-export type ModType = "lib" | "mod";
-export type ModRequires = "none" | Array<ModID>;
-
-/***** Interfaces *****/
-export interface IConfig {
-	name: ModName;
-	id: ModID;
-	version: ModVersion;
-	type: ModType;
-	requires: ModRequires;
-	disabled: boolean;
-}
+import { Module } from "@Core/lib/Module";
 
 /***** Setup *****/
 const Logger = Toolkit.Logger.Mods.scope("Core/ConfigBuilder");
@@ -125,3 +108,4 @@ export class ConfigBuilder {
 		return this.configFile;
 	}*/
 }
+// TODO: Use json2toml for writing configs to file

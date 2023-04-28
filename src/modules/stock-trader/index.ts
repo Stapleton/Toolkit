@@ -8,16 +8,24 @@
 import Toolkit from "@Toolkit";
 import Puppeteer from "puppeteer";
 import Sleep from "@Core/lib/Sleep";
-import Module from "@Core/lib/Module";
 import OrderMaker from "@Mods/stock-trader/OrderMaker";
-import { StockTrader as Auth } from "@Config/auth.json";
 import { Info } from "@Mods/stock-trader/stock-trader.json";
 import { clickEl, typeEl } from "@Mods/stock-trader/ElementAbuse";
-import { IModConfig, ModRequires, ModType } from "@Core/lib/ModConfig";
+import { IModConfig, Module, IModule } from "@Core/lib/Module";
 import { Login as LoginFlow } from "@Mods/stock-trader/QueryStrings.json";
 
 /***** Interfaces *****/
 interface StockTraderConfig extends IModConfig {
+	Auth: {
+		TradingView: {
+			user: string;
+			pass: string;
+		};
+		EightCap: {
+			user: string;
+			pass: string;
+		};
+	};
 	Puppet: {
 		headless: boolean;
 		initLink: string;
@@ -38,7 +46,7 @@ class StockTrader extends Module {
 	protected config = <StockTraderConfig>this._config.getConfig();
 
 	constructor() {
-		super(Info.name, Info.id, Info.version, <ModType>Info.type, <ModRequires>Info.requires);
+		super(Info.name, Info.id, Info.version, <IModule.ModType>Info.type, <IModule.ModRequires>Info.requires);
 
 		this.startTime(this._name); // Start logger timer without timer auto log
 
@@ -90,8 +98,8 @@ class StockTrader extends Module {
 			await clickEl(QS.button.UserMenu, page[0]);
 			await clickEl(QS.button.SignIn, page[0]);
 			await clickEl(QS.button.Email, page[0]);
-			await typeEl(QS.input.Username, page[0], Auth.TradingView.user);
-			await typeEl(QS.input.Password, page[0], Auth.TradingView.pass);
+			await typeEl(QS.input.Username, page[0], self.config.Auth.TradingView.user);
+			await typeEl(QS.input.Password, page[0], self.config.Auth.TradingView.pass);
 			await clickEl(QS.button.Submit, page[0]);
 			Sleep(2000);
 
@@ -103,7 +111,8 @@ class StockTrader extends Module {
 	}
 
 	private async loginToBroker(browser: Puppeteer.Browser) {
-		let page = await browser.pages(),
+		let self = this,
+			page = await browser.pages(),
 			QS = LoginFlow.Broker;
 
 		Logger.pending(`Heading to ${this.config.Puppet.chartLink}`);
@@ -120,8 +129,8 @@ class StockTrader extends Module {
 				await (await page[0].$(QS.grid.EightCap)).hover();
 				Sleep(500);
 				await clickEl(QS.button.EightCap, page[0]);
-				await typeEl(QS.input.Username, page[0], Auth.EightCap.user);
-				await typeEl(QS.input.Password, page[0], Auth.EightCap.pass);
+				await typeEl(QS.input.Username, page[0], self.config.Auth.EightCap.user);
+				await typeEl(QS.input.Password, page[0], self.config.Auth.EightCap.pass);
 				await clickEl(QS.button.Submit, page[0]);
 			}
 			Sleep(4000);

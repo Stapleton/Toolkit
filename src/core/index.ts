@@ -9,11 +9,11 @@
 import { join } from "path";
 import Toolkit from "@Toolkit";
 import { Signale } from "signale";
-import Module from "@Core/lib/Module";
+import { Module } from "@Core/lib/Module";
 import { existsSync, writeFileSync } from "fs";
 import UDPSocketServer from "@Core/net/UDPSocketServer";
 import WebSocketServer from "@Core/net/WebSocketServer";
-import { IModConfig } from "@Core/lib/ModConfig";
+import { IModConfig } from "@Core/lib/Module";
 
 /***** Interfaces *****/
 interface CoreNetConfig extends IModConfig {

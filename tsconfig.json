@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"assumeChangesOnlyAffectDirectDependencies": true,
+		"assumeChangesOnlyAffectDirectDependencies": false,
 		"baseUrl": "../Toolkit",
 		"declaration": true,
 		"declarationDir": "./typings",
@@ -9,7 +9,6 @@
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
-		"importsNotUsedAsValues": "preserve",
 		"incremental": true,
 		"inlineSourceMap": true,
 		"inlineSources": true,
@@ -51,12 +50,12 @@
 			]
 		},
 		"resolveJsonModule": true,
-		"rootDir": "./",
+		"rootDir": "./src",
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"target": "ESNext",
 		"tsBuildInfoFile": "./build/.tsbuildinfo",
-		"watch": true
+		"watch": false
 	},
 	"references": [
 		{
@@ -73,11 +72,9 @@
 		}
 	],
 	"files": [
-		"./src/Toolkit.ts",
-		"src/core/lib/Module.ts",
 		"src/core/lib/Sleep.ts",
-		"src/core/lib/ModConfig.ts",
-		"./config/auth.json",
-		"./src/index.ts"
+		"src/core/lib/Module.ts",
+		"src/Toolkit.ts",
+		"src/index.ts"
 	]
 }
