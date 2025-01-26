@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/role-manager/role-manager.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/role-manager/role-manager.json";
 
 /***** Interfaces *****/
 interface RoleManagerConfig extends IModConfig {}

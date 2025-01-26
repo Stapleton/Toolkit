@@ -1,9 +1,9 @@
 /** @format */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/positivity-gen/positivity-gen.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/positivity-gen/positivity-gen.json";
 
 /***** Interfaces *****/
 interface PositivityGeneratorConfig extends IModConfig {}

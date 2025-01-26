@@ -1,8 +1,8 @@
 /** @format */
 
-import dgram from "node:dgram";
-import Toolkit from "@Toolkit";
-import UDPSocketServerError from "@Core/error/UDPSocketServerError";
+import { createSocket, RemoteInfo } from "node:dgram";
+import Toolkit from "../../../src/Toolkit";
+import UDPSocketServerError from "../../../src/core/error/UDPSocketServerError";
 
 interface UDPSSConfig {
 	port: number;
@@ -12,7 +12,7 @@ interface UDPSSConfig {
 class UDPSocketServer {
 	private static INSTANCE: UDPSocketServer;
 	private Logger = Toolkit.Logger.Core.scope("Core.Net.UDPSS");
-	private Server = dgram.createSocket("udp4");
+	private Server = createSocket("udp4");
 
 	private constructor(config: UDPSSConfig) {
 		this.Logger.await(`Starting...`);
@@ -57,7 +57,7 @@ class UDPSocketServer {
 		this.Logger.connect(`from Socket`);
 	}
 
-	private onMessage(msg: Buffer, rinfo: dgram.RemoteInfo) {
+	private onMessage(msg: Buffer, rinfo: RemoteInfo) {
 		this.Logger.message(`from ${rinfo.address}:${rinfo.port}`);
 		this.Logger.message(msg);
 	}

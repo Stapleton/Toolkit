@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/discord/discord.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/discord/discord.json";
 
 /***** Interfaces *****/
 interface DiscordConfig extends IModConfig {}

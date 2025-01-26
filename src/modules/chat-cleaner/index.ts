@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { Module, IModConfig } from "@Core/lib/Module";
-import { Info } from "@Mods/chat-cleaner/chat-cleaner.json";
+import Toolkit from "../../../src/Toolkit";
+import { Module, IModConfig } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/chat-cleaner/chat-cleaner.json";
 
 /***** Interfaces *****/
 interface ChatCleanerConfig extends IModConfig {}

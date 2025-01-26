@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/mass-ban-tool/mass-ban-tool.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/mass-ban-tool/mass-ban-tool.json";
 
 /***** Interfaces *****/
 interface MassBanToolConfig extends IModConfig {}

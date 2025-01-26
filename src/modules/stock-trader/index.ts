@@ -5,14 +5,14 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
+import Toolkit from "../../../src/Toolkit";
 import Puppeteer from "puppeteer";
-import Sleep from "@Core/lib/Sleep";
-import OrderMaker from "@Mods/stock-trader/OrderMaker";
-import { Info } from "@Mods/stock-trader/stock-trader.json";
-import { clickEl, typeEl } from "@Mods/stock-trader/ElementAbuse";
-import { IModConfig, Module, IModule } from "@Core/lib/Module";
-import { Login as LoginFlow } from "@Mods/stock-trader/QueryStrings.json";
+import Sleep from "../../../src/core/lib/Sleep";
+import OrderMaker from "../../../src/modules/stock-trader/OrderMaker";
+import { Info } from "../../../src/modules/stock-trader/stock-trader.json";
+import { clickEl, typeEl } from "../../../src/modules/stock-trader/ElementAbuse";
+import { IModConfig, Module, IModule } from "../../../src/core/lib/Module";
+import { Login as LoginFlow } from "../../../src/modules/stock-trader/QueryStrings.json";
 
 /***** Interfaces *****/
 interface StockTraderConfig extends IModConfig {

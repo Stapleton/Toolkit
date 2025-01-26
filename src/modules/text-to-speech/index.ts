@@ -5,10 +5,10 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "@Core/lib/ModConfig";
-import Module from "@Core/lib/Module";
-import { Info } from "@Mods/text-to-speech/text-to-speech.json";
-import Toolkit from "@Toolkit";
+import { IModConfig } from "../../../src/core/lib/ModConfig";
+import Module from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/text-to-speech/text-to-speech.json";
+import Toolkit from "../../../src/Toolkit";
 
 /***** Interfaces *****/
 interface TextToSpeechConfig extends IModConfig {}

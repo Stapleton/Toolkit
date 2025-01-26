@@ -8,6 +8,6 @@
 // TODO: Create various API endpoints for internal and external tool usage
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
+import Toolkit from "../../src/Toolkit";
 
 /***** Setup *****/

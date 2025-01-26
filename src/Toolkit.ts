@@ -1,7 +1,7 @@
 /** @format */
 
 import { Signale } from "signale";
-import { Module, IModConfig, __TKConfigs } from "@Core/lib/Module";
+import { Module, IModConfig, __TKConfigs } from "../src/core/lib/Module";
 import { ChildProcess } from "child_process";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";

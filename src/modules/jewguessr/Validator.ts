@@ -1,7 +1,7 @@
 /** @format */
 
-import { SPARQLQueryDispatcher } from "@Mods/jewguessr/SPARQLQueryDispatcher";
-import { ScrapeIMDB } from "@Mods/jewguessr/ScrapeIMDB";
+import { SPARQLQueryDispatcher } from "../../../src/modules/jewguessr/SPARQLQueryDispatcher";
+import { ScrapeIMDB } from "../../../src/modules/jewguessr/ScrapeIMDB";
 import * as json from "jsonfile";
 import * as fs from "fs";
 

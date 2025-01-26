@@ -3,7 +3,7 @@
 import { join } from "path";
 import { parse } from "toml";
 import { Signale } from "signale";
-import EventEmitter from "events";
+import { EventEmitter } from "node:events";
 import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
 
 export var __TKModules: Map<IModule.ModID, Module> = new Map();

@@ -2,7 +2,7 @@
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
 		"tsBuildInfoFile": "../../build/src/core/.tsbuildinfo",
-		"composite": true,
+		"composite": false,
 		"declarationDir": "../../typings/src"
 	},
 	"include": [

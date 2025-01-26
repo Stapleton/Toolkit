@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { Module, IModConfig } from "@Core/lib/Module";
-import { Info } from "@Mods/jewguessr/jewguessr.json";
+import Toolkit from "../../../src/Toolkit";
+import { Module, IModConfig } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/jewguessr/jewguessr.json";
 
 /***** Interfaces *****/
 interface JewguessrConfig extends IModConfig {}

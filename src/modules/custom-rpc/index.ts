@@ -5,9 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/custom-rpc/custom-rpc.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/custom-rpc/custom-rpc.json";
 
 /***** Interfaces *****/
 interface CustomRPCConfig extends IModConfig {}

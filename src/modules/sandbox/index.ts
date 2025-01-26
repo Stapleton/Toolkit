@@ -1,9 +1,9 @@
 /** @format */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import { IModConfig, Module } from "@Core/lib/Module";
-import { Info } from "@Mods/sandbox/sandbox.json";
+import Toolkit from "../../../src/Toolkit";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
+import { Info } from "../../../src/modules/sandbox/sandbox.json";
 
 /***** Interfaces *****/
 interface SandboxConfig extends IModConfig {}

@@ -7,13 +7,13 @@
 
 /***** Imports *****/
 import { join } from "path";
-import Toolkit from "@Toolkit";
+import Toolkit from "../../src/Toolkit";
 import { Signale } from "signale";
-import { Module } from "@Core/lib/Module";
+import { Module } from "../../src/core/lib/Module";
 import { existsSync, writeFileSync } from "fs";
-import UDPSocketServer from "@Core/net/UDPSocketServer";
-import WebSocketServer from "@Core/net/WebSocketServer";
-import { IModConfig } from "@Core/lib/Module";
+import UDPSocketServer from "../../src/core/net/UDPSocketServer";
+import WebSocketServer from "../../src/core/net/WebSocketServer";
+import { IModConfig } from "../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface CoreNetConfig extends IModConfig {

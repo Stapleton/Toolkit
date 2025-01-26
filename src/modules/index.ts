@@ -12,10 +12,10 @@
 // ?: The old musicbot will be built into its own module and hosted from the Toolkit
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
+import Toolkit from "../../../src/Toolkit";
 import { join } from "path";
 import { ChildProcess, fork } from "child_process";
-import { IModule } from "@Core/lib/Module";
+import { IModule } from "../../../src/core/lib/Module";
 import { lstat, PathLike, readdirSync, readFileSync } from "fs";
 
 /***** Setup *****/

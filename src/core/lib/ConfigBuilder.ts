@@ -5,11 +5,11 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
+import Toolkit from "../../../src/Toolkit";
 import { join } from "path";
 import { parse } from "toml";
 import { PathLike } from "fs";
-import { Module } from "@Core/lib/Module";
+import { Module } from "../../../src/core/lib/Module";
 
 /***** Setup *****/
 const Logger = Toolkit.Logger.Mods.scope("Core/ConfigBuilder");

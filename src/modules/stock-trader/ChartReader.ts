@@ -4,7 +4,7 @@
  * @format
  */
 
-import Toolkit from "@Toolkit";
+import Toolkit from "../../../src/Toolkit";
 import { Page } from "puppeteer";
 
 /***** Imports *****/

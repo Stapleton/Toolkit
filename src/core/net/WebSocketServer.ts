@@ -1,7 +1,7 @@
 /** @format */
 
-import WebSocketServerError from "@Core/error/WebSocketServerError";
-import Toolkit from "@Toolkit";
+import WebSocketServerError from "../../../src/core/error/WebSocketServerError";
+import Toolkit from "../../../src/Toolkit";
 import { IncomingMessage } from "http";
 import { RawData, WebSocketServer as WSS, WebSocket } from "ws";
 

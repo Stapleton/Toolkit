@@ -5,10 +5,10 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
+import Toolkit from "../../../src/Toolkit";
 import { Page } from "puppeteer";
-import { OrderMaker as QS } from "@Mods/stock-trader/QueryStrings.json";
-import { typeOneEl, clickEl, tapOneEl } from "@Mods/stock-trader/ElementAbuse";
+import { OrderMaker as QS } from "../../../src/modules/stock-trader/QueryStrings.json";
+import { typeOneEl, clickEl, tapOneEl } from "../../../src/modules/stock-trader/ElementAbuse";
 
 /***** Interfaces *****/
 type OrderType = "market" | "limit" | "stop" | "stoplimit";

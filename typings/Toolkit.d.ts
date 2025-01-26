@@ -1,8 +1,8 @@
 /** @format */
 /// <reference types="node" />
-import Module from "@Core/lib/Module";
+import Module from "../../../src/core/lib/Module";
 import { ChildProcess } from "child_process";
-import { IModConfig } from "@Core/lib/Module";
+import { IModConfig } from "../../../src/core/lib/Module";
 export declare type ToolkitDomain = "api" | "app" | "core" | "module";
 export interface ToolkitConfig extends IModConfig {
     Api: {
@@ -71,8 +71,8 @@ declare class Toolkit extends Module {
         Mods: import("signale").Signale<"close" | "listen" | "message" | "connect" | "create" | "disabled">;
     };
     Workers: Map<ToolkitDomain, ChildProcess>;
-    Modules: Map<string, import("@Core/lib/Module").ModConfig>;
-    Configs: Map<string, import("@Core/lib/Module").ModConfig>;
+    Modules: Map<string, import("../../../src/core/lib/Module").ModConfig>;
+    Configs: Map<string, import("../../../src/core/lib/Module").ModConfig>;
     private constructor();
     static getInstance(): Toolkit;
 }
