@@ -14,9 +14,9 @@ interface ChatCleanerConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mods.Chat Cleaner");
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
+Logger.start(`Initializing ${Info.name}`);
+Logger.info(`Module Version: ${Info.version}`);
+Logger.info(`Module ID: ${Info.id}`);
 
 class ChatCleaner extends Module {
 	protected config = <ChatCleanerConfig>this._config.getConfig();

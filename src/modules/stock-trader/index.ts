@@ -40,7 +40,9 @@ interface StockTraderConfig extends IModConfig {
 
 /***** Setup *****/
 const Logger = Toolkit.Logger.Mods.scope("Mods.Stock Trader");
-Logger.start([`Initializing ${Info.name}`, `Module Version: ${Info.version}`, `Module ID: ${Info.id}`].join("\n"));
+Logger.start(`Initializing ${Info.name}`);
+Logger.info(`Module Version: ${Info.version}`);
+Logger.info(`Module ID: ${Info.id}`);
 
 class StockTrader extends Module {
 	protected config = <StockTraderConfig>this._config.getConfig();

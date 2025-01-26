@@ -14,9 +14,9 @@ interface DiscordConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mods.Discord");
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
+Logger.start(`Initializing ${Info.name}`);
+Logger.info(`Module Version: ${Info.version}`);
+Logger.info(`Module ID: ${Info.id}`);
 
 class Discord extends Module {
 	protected config = <DiscordConfig>this._config.getConfig();

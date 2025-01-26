@@ -3,18 +3,18 @@
 import WebSocketServerError from "../../../src/core/error/WebSocketServerError";
 import Toolkit from "../../../src/Toolkit";
 import { IncomingMessage } from "http";
-import { RawData, WebSocketServer as WSS, WebSocket } from "ws";
+import { RawData, WebSocketServer as _WebSocketServer, WebSocket } from "ws";
 
-interface WSSConfig {
+interface WebSocketServerConfig {
 	port: number;
 	host: string;
 }
 
-class WebSocketServer extends WSS {
+class WebSocketServer extends _WebSocketServer {
 	private static INSTANCE: WebSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.WSS");
+	private Logger = Toolkit.Logger.Core.scope("Core.Net.WebSocketServer");
 
-	private constructor(config: WSSConfig) {
+	private constructor(config: WebSocketServerConfig) {
 		super({
 			port: config.port,
 			host: config.host,
@@ -26,11 +26,11 @@ class WebSocketServer extends WSS {
 		this.on("headers", this.onHeaders);
 		this.on("connection", this.onConnection);
 		this.on("listening", () => {
-			this.Logger.listen(`WSS on ${config.host}:${config.port}`);
+			this.Logger.listen(`WebSocketServer on ${config.host}:${config.port}`);
 		});
 	}
 
-	public static getInstance(config: WSSConfig) {
+	public static getInstance(config: WebSocketServerConfig) {
 		if (!this.INSTANCE) this.INSTANCE = new WebSocketServer(config);
 		return this.INSTANCE;
 	}
@@ -44,7 +44,7 @@ class WebSocketServer extends WSS {
 	}
 
 	private onHeaders(headers: string[], request: IncomingMessage) {
-		this.Logger.debug(`WSS Headers: ${headers}`);
+		this.Logger.debug(`WebSocketServer Headers: ${headers}`);
 	}
 
 	private onConnection(websocket: WebSocket, request: IncomingMessage) {

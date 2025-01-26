@@ -1,22 +1,42 @@
 /** @format */
 
 import { Signale } from "signale";
-import { Module, IModConfig, __TKConfigs } from "../src/core/lib/Module";
+import { Module, IModConfig, IModule, __TKConfigs } from "../src/core/lib/Module";
 import { ChildProcess } from "child_process";
 
 export type ToolkitDomain = "api" | "app" | "core" | "module";
 
 export interface ToolkitConfig extends IModConfig {
 	Api: {
+		name: IModule.ModName;
+		id: IModule.ModID;
+		version: IModule.ModVersion;
+		type: IModule.ModType;
+		requires: IModule.ModRequires;
 		disabled: boolean;
 	};
 	App: {
+		name: IModule.ModName;
+		id: IModule.ModID;
+		version: IModule.ModVersion;
+		type: IModule.ModType;
+		requires: IModule.ModRequires;
 		disabled: boolean;
 	};
 	Core: {
+		name: IModule.ModName;
+		id: IModule.ModID;
+		version: IModule.ModVersion;
+		type: IModule.ModType;
+		requires: IModule.ModRequires;
 		disabled: boolean;
 	};
 	Module: {
+		name: IModule.ModName;
+		id: IModule.ModID;
+		version: IModule.ModVersion;
+		type: IModule.ModType;
+		requires: IModule.ModRequires;
 		disabled: boolean;
 	};
 }

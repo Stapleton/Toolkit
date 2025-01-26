@@ -16,12 +16,12 @@ import WebSocketServer from "../../src/core/net/WebSocketServer";
 import { IModConfig } from "../../src/core/lib/Module";
 
 /***** Interfaces *****/
-interface CoreNetConfig extends IModConfig {
-	UDPSS: {
+interface TKCoreConfig extends IModConfig {
+	UDPSocketServer: {
 		port: number;
 		host: string;
 	};
-	WSS: {
+	WebSocketServer: {
 		port: number;
 		host: string;
 	};
@@ -46,32 +46,32 @@ function checkAuth() {
 
 checkAuth();
 
-/***** Setup CoreNet Servers *****/
-class CoreNet extends Module {
-	private static INSTANCE: CoreNet;
-	private readonly Logger = Toolkit.Logger.Core.scope("Core.Net");
-	private readonly Config = <CoreNetConfig>this._config.getConfig();
+/***** Setup TKCore Servers *****/
+class TKCore extends Module {
+	private static INSTANCE: TKCore;
+	private readonly Logger = Toolkit.Logger.Core.scope("Core");
+	private readonly Config = <TKCoreConfig>this._config.getConfig();
 
 	private constructor() {
-		super("Core.Net", "core.net", "0.0.1", "lib", ["toolkit"]);
+		super("Toolkit Core", "tk-core", "0.0.1", "lib", ["toolkit"]);
 		this.Logger.start("Initializing");
 
-		this.startUDPSS();
-		this.startWSS();
+		this.startUDPSocketServer();
+		this.startWebSocketServer();
 	}
 
 	public static getInstance() {
-		if (!this.INSTANCE) this.INSTANCE = new CoreNet();
+		if (!this.INSTANCE) this.INSTANCE = new TKCore();
 		return this.INSTANCE;
 	}
 
-	private startUDPSS() {
-		UDPSocketServer.getInstance(this.Config.UDPSS);
+	private startUDPSocketServer() {
+		UDPSocketServer.getInstance(this.Config.UDPSocketServer);
 	}
 
-	private startWSS() {
-		WebSocketServer.getInstance(this.Config.WSS);
+	private startWebSocketServer() {
+		WebSocketServer.getInstance(this.Config.WebSocketServer);
 	}
 }
 
-CoreNet.getInstance();
+TKCore.getInstance();

@@ -10,9 +10,9 @@ interface PositivityGeneratorConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope(`Mods.${Info.id}`); // Finish Logger Definition
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
+Logger.start(`Initializing ${Info.name}`);
+Logger.info(`Module Version: ${Info.version}`);
+Logger.info(`Module ID: ${Info.id}`);
 
 class PositivityGenerator extends Module {
 	protected config = <PositivityGeneratorConfig>this._config.getConfig();

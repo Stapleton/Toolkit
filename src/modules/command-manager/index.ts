@@ -14,9 +14,9 @@ interface CommandManagerConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mods.Command Manager");
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
+Logger.start(`Initializing ${Info.name}`);
+Logger.info(`Module Version: ${Info.version}`);
+Logger.info(`Module ID: ${Info.id}`);
 
 class CommandManager extends Module {
 	protected config = <CommandManagerConfig>this._config.getConfig();

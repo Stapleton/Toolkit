@@ -4,17 +4,17 @@ import { createSocket, RemoteInfo } from "node:dgram";
 import Toolkit from "../../../src/Toolkit";
 import UDPSocketServerError from "../../../src/core/error/UDPSocketServerError";
 
-interface UDPSSConfig {
+interface UDPSocketServerConfig {
 	port: number;
 	host: string;
 }
 
 class UDPSocketServer {
 	private static INSTANCE: UDPSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.UDPSS");
+	private Logger = Toolkit.Logger.Core.scope("Core.Net.UDPSocketServer");
 	private Server = createSocket("udp4");
 
-	private constructor(config: UDPSSConfig) {
+	private constructor(config: UDPSocketServerConfig) {
 		this.Logger.await(`Starting...`);
 
 		this.Server.bind(config.port, config.host);
@@ -24,11 +24,11 @@ class UDPSocketServer {
 		this.Server.on("connect", this.onConnect);
 		this.Server.on("message", this.onMessage);
 		this.Server.on("listening", () => {
-			this.Logger.listen(`UDPSS on ${config.host}:${config.port}`);
+			this.Logger.listen(`UDPSocketServer on ${config.host}:${config.port}`);
 		});
 	}
 
-	public static getInstance(config: UDPSSConfig) {
+	public static getInstance(config: UDPSocketServerConfig) {
 		if (!this.INSTANCE) this.INSTANCE = new UDPSocketServer(config);
 		return this.INSTANCE;
 	}

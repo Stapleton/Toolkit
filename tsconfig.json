@@ -56,6 +56,20 @@
 		"target": "ESNext",
 		"tsBuildInfoFile": "./build/.tsbuildinfo"
 	},
+	"references": [
+		{
+			"path": "./src/api/api.tsconfig.json"
+		},
+		{
+			"path": "./src/app/app.tsconfig.json"
+		},
+		{
+			"path": "./src/modules/modules.tsconfig.json"
+		},
+		{
+			"path": "./src/core/core.tsconfig.json"
+		}
+	],
 	"files": [
 		"src/core/lib/Sleep.ts",
 		"src/core/lib/Module.ts",
