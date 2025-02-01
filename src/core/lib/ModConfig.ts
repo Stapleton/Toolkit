@@ -66,7 +66,7 @@ export class ModConfig {
 	}
 
 	private parseConfig(text: string): IModConfig {
-		let config = parse(text)["module"];
+		let config = parse(text);
 		return {
 			...config,
 		};

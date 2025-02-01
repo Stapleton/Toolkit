@@ -22,7 +22,7 @@ class Discord extends Module {
 	protected config = <DiscordConfig>this._config.getConfig();
 
 	constructor() {
-		super(Info.name, Info.id, Info.version);
+		super(Info.name, Info.id, Info.version, "lib", "none");
 
 		Logger.disable();
 		Logger.debug(this.config);

@@ -5,7 +5,8 @@ import Toolkit from "../../../src/Toolkit";
 import { IncomingMessage } from "http";
 import { RawData, WebSocketServer as _WebSocketServer, WebSocket } from "ws";
 
-interface WebSocketServerConfig {
+export interface WebSocketServerConfig {
+	disabled: boolean;
 	port: number;
 	host: string;
 }

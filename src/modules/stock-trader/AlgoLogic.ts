@@ -63,7 +63,7 @@ export default class StockTrader extends Module {
 	};
 
 	constructor() {
-		super(Config.name, Config.id, Config.version, Config.type, Config.requires);
+		super(Config.module.name, Config.module.id, Config.module.version, Config.module.type, Config.module.requires);
 
 		// TODO: Feed in real stock ticker data
 		this.upper = this.setGradient(150, 5);

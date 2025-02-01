@@ -54,7 +54,8 @@
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"target": "ESNext",
-		"tsBuildInfoFile": "./build/.tsbuildinfo"
+		"tsBuildInfoFile": "./build/.tsbuildinfo",
+		"types": ["ws", "node", "jsonfile", "dom-parser", "signale"]
 	},
 	"references": [
 		{

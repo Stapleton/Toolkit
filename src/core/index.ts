@@ -11,20 +11,14 @@ import Toolkit from "../../src/Toolkit";
 import { Signale } from "signale";
 import { Module } from "../../src/core/lib/Module";
 import { existsSync, writeFileSync } from "fs";
-import UDPSocketServer from "../../src/core/net/UDPSocketServer";
-import WebSocketServer from "../../src/core/net/WebSocketServer";
+import UDPSocketServer, { UDPSocketServerConfig } from "../../src/core/net/UDPSocketServer";
+import WebSocketServer, { WebSocketServerConfig } from "../../src/core/net/WebSocketServer";
 import { IModConfig } from "../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface TKCoreConfig extends IModConfig {
-	UDPSocketServer: {
-		port: number;
-		host: string;
-	};
-	WebSocketServer: {
-		port: number;
-		host: string;
-	};
+	UDPSocketServer: UDPSocketServerConfig;
+	WebSocketServer: WebSocketServerConfig;
 }
 
 /***** Setup *****/
@@ -56,8 +50,8 @@ class TKCore extends Module {
 		super("Toolkit Core", "tk-core", "0.0.1", "lib", ["toolkit"]);
 		this.Logger.start("Initializing");
 
-		this.startUDPSocketServer();
-		this.startWebSocketServer();
+		if (!this.Config.UDPSocketServer.disabled) this.startUDPSocketServer();
+		if (!this.Config.WebSocketServer.disabled) this.startWebSocketServer();
 	}
 
 	public static getInstance() {

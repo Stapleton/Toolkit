@@ -4,7 +4,8 @@ import { createSocket, RemoteInfo } from "node:dgram";
 import Toolkit from "../../../src/Toolkit";
 import UDPSocketServerError from "../../../src/core/error/UDPSocketServerError";
 
-interface UDPSocketServerConfig {
+export interface UDPSocketServerConfig {
+	disabled: boolean;
 	port: number;
 	host: string;
 }

@@ -16,12 +16,14 @@ export namespace IModule {
 }
 
 export interface IModConfig {
-	name: IModule.ModName;
-	id: IModule.ModID;
-	version: IModule.ModVersion;
-	type: IModule.ModType;
-	requires: IModule.ModRequires;
-	disabled: boolean;
+	module: {
+		name: IModule.ModName;
+		id: IModule.ModID;
+		version: IModule.ModVersion;
+		type: IModule.ModType;
+		requires: IModule.ModRequires;
+		disabled: boolean;
+	};
 }
 
 const Logger = new Signale({
@@ -63,7 +65,7 @@ export class Module extends EventEmitter {
 		this._config = new ModConfig(this);
 
 		if (this._config.notInit(id)) this._config.init(name, id, version);
-		if (this._config.getConfig().disabled) this.disabledMod(5);
+		if (this._config.getConfig().module.disabled) this.disabledMod(5);
 
 		__TKModules.set(this.id, this);
 	}

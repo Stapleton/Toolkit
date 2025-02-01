@@ -8,6 +8,8 @@
 import Toolkit from "../../../src/Toolkit";
 import { IModConfig, Module } from "../../../src/core/lib/Module";
 import { Info } from "../../../src/modules/command-manager/command-manager.json";
+import DiscordCommandManager from "./DiscordCommandManager";
+//import TwitchCommandManager from "./TwitchCommandManager";
 
 /***** Interfaces *****/
 interface CommandManagerConfig extends IModConfig {}
@@ -27,6 +29,9 @@ class CommandManager extends Module {
 		Logger.disable();
 		Logger.debug(this.config);
 		Logger.enable();
+
+		new DiscordCommandManager();
+		//new TwitchCommandManager();
 	}
 }
 
