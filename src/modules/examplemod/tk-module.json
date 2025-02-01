@@ -1,7 +1,7 @@
 {
-    "Info": {
-        "name": "Chat Cleaner",
-        "id": "chat-cleaner",
+    "meta": {
+        "name": "Example Mod",
+        "id": "examplemod",
         "version": "0.0.0",
         "type": "mod",
         "requires": "none"

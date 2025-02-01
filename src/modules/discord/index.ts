@@ -7,22 +7,22 @@
 /***** Imports *****/
 import Toolkit from "../../../src/Toolkit";
 import { IModConfig, Module } from "../../../src/core/lib/Module";
-import { Info } from "../../../src/modules/discord/discord.json";
+import { meta } from "./tk-module.json";
 
 /***** Interfaces *****/
 interface DiscordConfig extends IModConfig {}
 
 /***** Setup *****/
 let Logger = Toolkit.Logger.Mods.scope("Mods.Discord");
-Logger.start(`Initializing ${Info.name}`);
-Logger.info(`Module Version: ${Info.version}`);
-Logger.info(`Module ID: ${Info.id}`);
+Logger.start(`Initializing ${meta.name}`);
+Logger.info(`Module Version: ${meta.version}`);
+Logger.info(`Module ID: ${meta.id}`);
 
 class Discord extends Module {
 	protected config = <DiscordConfig>this._config.getConfig();
 
 	constructor() {
-		super(Info.name, Info.id, Info.version, "lib", "none");
+		super(meta.name, meta.id, meta.version, "lib", "none");
 
 		Logger.disable();
 		Logger.debug(this.config);

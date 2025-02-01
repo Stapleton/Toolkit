@@ -1,7 +1,7 @@
 {
-    "Info": {
-        "name": "Mass Ban Tool",
-        "id": "mass-ban-tool",
+    "meta": {
+        "name": "Text To Speech",
+        "id": "text-to-speech",
         "version": "0.0.0",
         "type": "mod",
         "requires": "none"

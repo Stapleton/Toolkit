@@ -72,7 +72,7 @@
 		}
 	],
 	"files": [
-		"src/core/lib/Sleep.ts",
+		"src/core/utils/Sleep.ts",
 		"src/core/lib/Module.ts",
 		"src/Toolkit.ts",
 		"src/index.ts"

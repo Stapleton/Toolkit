@@ -64,7 +64,7 @@ export class Module extends EventEmitter {
 		this.requires = requires;
 		this._config = new ModConfig(this);
 
-		if (this._config.notInit(id)) this._config.init(name, id, version);
+		if (this._config.notInit(id)) this._config.init(name, id, version, type, requires);
 		if (this._config.getConfig().module.disabled) this.disabledMod(5);
 
 		__TKModules.set(this.id, this);

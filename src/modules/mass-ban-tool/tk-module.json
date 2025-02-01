@@ -1,7 +1,7 @@
 {
-    "Info": {
-        "name": "Jewguessr",
-        "id": "jewguessr",
+    "meta": {
+        "name": "Mass Ban Tool",
+        "id": "mass-ban-tool",
         "version": "0.0.0",
         "type": "mod",
         "requires": "none"

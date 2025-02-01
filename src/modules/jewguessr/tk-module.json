@@ -1,7 +1,7 @@
 {
-    "Info": {
-        "name": "Text To Speech",
-        "id": "text-to-speech",
+    "meta": {
+        "name": "Jewguessr",
+        "id": "jewguessr",
         "version": "0.0.0",
         "type": "mod",
         "requires": "none"

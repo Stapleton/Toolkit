@@ -9,30 +9,15 @@
 
 /***** Imports *****/
 import Toolkit from "../../src/Toolkit";
-import { Signale } from "signale";
-import { Module } from "../../src/core/lib/Module";
-import { IModConfig } from "../../src/core/lib/Module";
-
-/***** Setup *****/
-/**
- * /*
- * Core Entry Point
- *
- * @format
- */
+import { Module, IModConfig } from "../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface TKApiConfig extends IModConfig {}
 
-/***** Setup *****/
-export const Logger = new Signale({ scope: "Api" });
-
-Logger.start("Initializing");
-
-/***** Setup TKCore Servers *****/
+/***** Setup TKApi *****/
 class TKApi extends Module {
 	private static INSTANCE: TKApi;
-	private readonly Logger = Toolkit.Logger.Core.scope("Core.Net");
+	private readonly Logger = Toolkit.Logger.Api;
 	private readonly Config = <TKApiConfig>this._config.getConfig();
 
 	private constructor() {

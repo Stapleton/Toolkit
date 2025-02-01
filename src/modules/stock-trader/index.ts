@@ -7,9 +7,9 @@
 /***** Imports *****/
 import Toolkit from "../../../src/Toolkit";
 import Puppeteer from "puppeteer";
-import Sleep from "../../../src/core/lib/Sleep";
+import Sleep from "../../core/utils/Sleep";
 import OrderMaker from "../../../src/modules/stock-trader/OrderMaker";
-import { Info } from "../../../src/modules/stock-trader/stock-trader.json";
+import { meta } from "./tk-module.json";
 import { clickEl, typeEl } from "../../../src/modules/stock-trader/ElementAbuse";
 import { IModConfig, Module, IModule } from "../../../src/core/lib/Module";
 import { Login as LoginFlow } from "../../../src/modules/stock-trader/QueryStrings.json";
@@ -40,15 +40,15 @@ interface StockTraderConfig extends IModConfig {
 
 /***** Setup *****/
 const Logger = Toolkit.Logger.Mods.scope("Mods.Stock Trader");
-Logger.start(`Initializing ${Info.name}`);
-Logger.info(`Module Version: ${Info.version}`);
-Logger.info(`Module ID: ${Info.id}`);
+Logger.start(`Initializing ${meta.name}`);
+Logger.info(`Module Version: ${meta.version}`);
+Logger.info(`Module ID: ${meta.id}`);
 
 class StockTrader extends Module {
 	protected config = <StockTraderConfig>this._config.getConfig();
 
 	constructor() {
-		super(Info.name, Info.id, Info.version, <IModule.ModType>Info.type, <IModule.ModRequires>Info.requires);
+		super(meta.name, meta.id, meta.version, <IModule.ModType>meta.type, <IModule.ModRequires>meta.requires);
 
 		this.startTime(this._name); // Start logger timer without timer auto log
 

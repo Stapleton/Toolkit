@@ -8,7 +8,6 @@
 /***** Imports *****/
 import { join } from "path";
 import Toolkit from "../../src/Toolkit";
-import { Signale } from "signale";
 import { Module } from "../../src/core/lib/Module";
 import { existsSync, writeFileSync } from "fs";
 import UDPSocketServer, { UDPSocketServerConfig } from "../../src/core/net/UDPSocketServer";
@@ -21,18 +20,13 @@ interface TKCoreConfig extends IModConfig {
 	WebSocketServer: WebSocketServerConfig;
 }
 
-/***** Setup *****/
-export const Logger = new Signale({ scope: "Core" });
-
-Logger.start("Initializing");
-
 /***** Check/Make Authentication Storage JSON *****/
 function checkAuth() {
 	let p = join(Toolkit.Paths.Config, "auth.json");
 
 	function makeAuth() {
 		writeFileSync(p, "{}", "utf-8");
-		Logger.star(`Created new auth.json in config folder!`);
+		Toolkit.Logger.Core.star(`Created new auth.json in config folder!`);
 	}
 
 	if (!existsSync(p)) makeAuth();
@@ -43,7 +37,7 @@ checkAuth();
 /***** Setup TKCore Servers *****/
 class TKCore extends Module {
 	private static INSTANCE: TKCore;
-	private readonly Logger = Toolkit.Logger.Core.scope("Core");
+	private readonly Logger = Toolkit.Logger.Core;
 	private readonly Config = <TKCoreConfig>this._config.getConfig();
 
 	private constructor() {
