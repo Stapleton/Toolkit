@@ -5,10 +5,9 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
 import { Page } from "puppeteer";
-import { OrderMaker as QS } from "@Mods/stock-trader/QueryStrings.json";
-import { typeOneEl, clickEl, tapOneEl } from "@Mods/stock-trader/ElementAbuse";
+import { OrderMaker as QS } from "../../../src/modules/stock-trader/QueryStrings.json";
+import { typeOneEl, clickEl, tapOneEl } from "../../../src/modules/stock-trader/ElementAbuse";
 
 /***** Interfaces *****/
 type OrderType = "market" | "limit" | "stop" | "stoplimit";
@@ -36,16 +35,16 @@ class OrderMakerError extends Error {
 }
 
 /***** Setup *****/ // ! Big Brain Builder Class Comin Thru
-const Logger = Toolkit.Logger.Mods.scope("StockTrader/OrderMaker");
-Logger.start("Initializing");
-
 export default class OrderMaker {
 	private page: Page;
 	private type: OrderType;
 	//private risk = false;
+	private logger;
 
-	constructor(page: Page) {
+	constructor(page: Page, logger: any) {
+		this.logger = logger.scope("Mods.StockTrader.OrderMaker");
 		this.page = page;
+		this.logger.start("Initializing");
 	}
 
 	private panic(why: string) {

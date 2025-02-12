@@ -1,0 +1,9 @@
+{
+    "meta": {
+        "name": "Positivity Generator",
+        "id": "positivity-gen",
+        "version": "0.0.0",
+        "type": "mod",
+        "requires": "none"
+    }
+}

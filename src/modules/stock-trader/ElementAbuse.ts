@@ -1,5 +1,5 @@
 /** @format */
-import Sleep from "@Core/lib/Sleep";
+import Sleep from "../../core/utils/Sleep";
 import Puppeteer from "puppeteer";
 
 export async function typeEl(query: string, page: Puppeteer.Page, text: string): Promise<void> {

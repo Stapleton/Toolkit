@@ -13,7 +13,7 @@ const server = http.createServer((req, res) => {
 server.on("upgrade", (req, socket, head) => {
 	socket.write(
 		"HTTP/1.1 101 Web Socket Protocol Handshake\r\n" + "Upgrade: WebSocket\r\n" + "Connection: Upgrade\r\n" + "\r\n"
-	); 
+	);
 
-	socket.pipe(socket); // echo back
+	//socket.pipe(); // echo back
 });

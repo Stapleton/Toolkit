@@ -1,15 +1,14 @@
 {
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
-		"assumeChangesOnlyAffectDirectDependencies": true,
-		"baseUrl": "../Toolkit",
+		"assumeChangesOnlyAffectDirectDependencies": false,
+		"baseUrl": "../TS_Toolkit",
 		"declaration": true,
 		"declarationDir": "./typings",
 		"declarationMap": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
 		"forceConsistentCasingInFileNames": true,
-		"importsNotUsedAsValues": "preserve",
 		"incremental": true,
 		"inlineSourceMap": true,
 		"inlineSources": true,
@@ -21,12 +20,12 @@
 			"ESNext.AsyncIterable"
 		],
 		"module": "NodeNext",
-		"moduleResolution": "node",
+		"moduleResolution": "NodeNext",
 		"noImplicitAny": true,
 		"noImplicitThis": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"outDir": "./build",
+		"outDir": "./out",
 		"paths": {
 			"@Mods/*": [
 				"src/modules/*"
@@ -44,26 +43,23 @@
 				"config/*"
 			],
 			"@Toolkit": [
-				"src/Toolkit.ts"
+				"src/index.ts"
 			],
 			"@Auth": [
 				"config/auth.json"
 			]
 		},
 		"resolveJsonModule": true,
-		"rootDir": "./",
+		"rootDir": "./src",
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"target": "ESNext",
-		"tsBuildInfoFile": "./build/.tsbuildinfo",
-		"watch": true
+		"tsBuildInfoFile": "./.tsbuildinfo",
+		"types": ["ws", "node", "jsonfile", "dom-parser", "signale"]
 	},
 	"references": [
 		{
 			"path": "./src/api/api.tsconfig.json"
-		},
-		{
-			"path": "./src/app/app.tsconfig.json"
 		},
 		{
 			"path": "./src/modules/modules.tsconfig.json"
@@ -72,12 +68,8 @@
 			"path": "./src/core/core.tsconfig.json"
 		}
 	],
-	"files": [
-		"./src/Toolkit.ts",
-		"src/core/lib/Module.ts",
-		"src/core/lib/Sleep.ts",
-		"src/core/lib/ModConfig.ts",
-		"./config/auth.json",
-		"./src/index.ts"
+	"include": [
+		"**/*",
+		"./src/modules/**/*.json"
 	]
 }

@@ -6,72 +6,40 @@
  */
 
 /***** Imports *****/
-import { join } from "path";
-import Toolkit from "@Toolkit";
-import { Signale } from "signale";
-import Module from "@Core/lib/Module";
-import { existsSync, writeFileSync } from "fs";
-import UDPSocketServer from "@Core/net/UDPSocketServer";
-import WebSocketServer from "@Core/net/WebSocketServer";
-import { IModConfig } from "@Core/lib/ModConfig";
+import TK from "..";
+import { Module, IModConfig } from "../../src/core/lib/Module";
+import UDPSocketServer, { UDPSocketServerConfig } from "../../src/core/net/UDPSocketServer";
+import WebSocketServer, { WebSocketServerConfig } from "../../src/core/net/WebSocketServer";
 
 /***** Interfaces *****/
-interface CoreNetConfig extends IModConfig {
-	UDPSS: {
-		port: number;
-		host: string;
-	};
-	WSS: {
-		port: number;
-		host: string;
-	};
+interface TKCoreConfig extends IModConfig {
+	UDPSocketServer: UDPSocketServerConfig;
+	WebSocketServer: WebSocketServerConfig;
 }
 
-/***** Setup *****/
-export const Logger = new Signale({ scope: "Core" });
+/***** Setup TKCore Servers *****/
+class TKCore extends Module {
+	public Toolkit: TK;
 
-Logger.start("Initializing");
+	private readonly Config = <TKCoreConfig>this._config.getConfig();
 
-/***** Check/Make Authentication Storage JSON *****/
-function checkAuth() {
-	let p = join(Toolkit.Paths.Config, "auth.json");
-
-	function makeAuth() {
-		writeFileSync(p, "{}", "utf-8");
-		Logger.star(`Created new auth.json in config folder!`);
-	}
-
-	if (!existsSync(p)) makeAuth();
-}
-
-checkAuth();
-
-/***** Setup CoreNet Servers *****/
-class CoreNet extends Module {
-	private static INSTANCE: CoreNet;
-	private readonly Logger = Toolkit.Logger.Core.scope("Core.Net");
-	private readonly Config = <CoreNetConfig>this._config.getConfig();
-
-	private constructor() {
-		super("Core.Net", "core.net", "0.0.1", "lib", ["toolkit"]);
+	constructor(toolkit: TK) {
+		super("Toolkit Core", "tk-core", "0.0.1", "lib", ["toolkit"]);
+		this.Toolkit = toolkit;
+		this.Logger = toolkit.Logger.Core;
 		this.Logger.start("Initializing");
 
-		this.startUDPSS();
-		this.startWSS();
+		if (!this.Config.UDPSocketServer.disabled) this.startUDPSocketServer();
+		if (!this.Config.WebSocketServer.disabled) this.startWebSocketServer();
 	}
 
-	public static getInstance() {
-		if (!this.INSTANCE) this.INSTANCE = new CoreNet();
-		return this.INSTANCE;
+	private startUDPSocketServer() {
+		UDPSocketServer.getInstance(this.Config.UDPSocketServer, this);
 	}
 
-	private startUDPSS() {
-		UDPSocketServer.getInstance(this.Config.UDPSS);
-	}
-
-	private startWSS() {
-		WebSocketServer.getInstance(this.Config.WSS);
+	private startWebSocketServer() {
+		WebSocketServer.getInstance(this.Config.WebSocketServer, this);
 	}
 }
 
-CoreNet.getInstance();
+export default TKCore;

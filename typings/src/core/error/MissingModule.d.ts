@@ -1,5 +1,5 @@
 /** @format */
-export declare class MissingModuleError extends Error {
+export default class MissingModuleError extends Error {
     constructor();
 }
 //# sourceMappingURL=MissingModule.d.ts.map

@@ -6,11 +6,10 @@
 
 /***** Imports *****/
 import * as toml from "toml";
-import Toolkit from "@Toolkit";
 import { Signale } from "signale";
 import { readFileSync } from "fs";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
+import { Module } from "../../../src/core/lib/Module";
+import { IModConfig } from "../../../src/core/lib/Module";
 
 /***** Types *****/
 type Gradient = {
@@ -40,9 +39,7 @@ interface StockTraderConfig extends IModConfig {
 const sleep = (ms: number) => {
 	Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);
 };
-const Config: StockTraderConfig = toml.parse(readFileSync(`${Toolkit.Paths.Config}\\stock-trader.toml`, "utf8"));
-const Logger = Toolkit.Logger.Mods.scope("Mod/Stock Trader");
-Logger.start("Initializing");
+const Config: StockTraderConfig = toml.parse(readFileSync(`GETTHECONFIGPATHHERE\\stock-trader.toml`, "utf8"));
 
 export default class StockTrader extends Module {
 	private AlgoStatusTicker: Signale = new Signale({ interactive: true, scope: "Mod/Stock Trader" });
@@ -53,6 +50,7 @@ export default class StockTrader extends Module {
 	private stepUp: number;
 	private stepDown: number;
 	private spread: Array<number> | number;
+	private logger: Module["Logger"] = this.Logger.scope("Mod/Stock Trader");
 
 	private delta: () => number = () => {
 		return this.price[this.price.length - 1] - this.median;
@@ -63,7 +61,8 @@ export default class StockTrader extends Module {
 	};
 
 	constructor() {
-		super(Config.name, Config.id, Config.version, Config.type, Config.requires);
+		super(Config.module.name, Config.module.id, Config.module.version, Config.module.type, Config.module.requires);
+		this.logger.start("Initializing");
 
 		// TODO: Feed in real stock ticker data
 		this.upper = this.setGradient(150, 5);
@@ -108,22 +107,22 @@ export default class StockTrader extends Module {
 		let delta = this.delta(),
 			steps = delta.toString().includes("-") ? delta / this.stepDown : delta / this.stepUp;
 
-		Logger.note(`\nStock Price/Median Delta: $${delta.toFixed(2)}`);
-		Logger.note(`${Math.floor(Math.abs(steps))}`);
+		this.logger.note(`\nStock Price/Median Delta: $${delta.toFixed(2)}`);
+		this.logger.note(`${Math.floor(Math.abs(steps))}`);
 	}
 
 	private exponentialSpread(): Array<number> {
 		let delta = this.delta(),
 			exp = [Number((delta * 0.01).toFixed(2)), Number((delta * 0.5).toFixed(2)), Number(delta.toFixed(2))];
 
-		Logger.info(`Spread, Exponential: ${exp}`);
+		this.logger.info(`Spread, Exponential: ${exp}`);
 		return exp;
 	}
 
 	private evenlySpread(): number {
 		let delta = this.delta(),
 			spread = delta / this.stepCount();
-		Logger.info(`Spread, Even: ${this.spread}`);
+		this.logger.info(`Spread, Even: ${this.spread}`);
 		return spread;
 	}
 

@@ -1,0 +1,14 @@
+{
+    "extends": "../modules.tsconfig.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "../../../build/modules/examplemod/.tsbuildinfo",
+        "composite": true
+    },
+    "include": [
+        "**/*"
+    ],
+    "files": [
+        "../../index.ts",
+        "./tk-module.json"
+    ]
+}

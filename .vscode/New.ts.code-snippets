@@ -22,7 +22,7 @@
 			"/** @format */",
 			"",
 			"/***** Imports *****/",
-			"import Toolkit from '@Toolkit';",
+			"import Toolkit from 'src/Toolkit';",
 			"",
 			"/***** Interfaces *****/",
 			"",

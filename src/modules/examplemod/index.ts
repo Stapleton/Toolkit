@@ -5,29 +5,27 @@
  */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Info } from "@Mods/examplemod/examplemod.json";
+import { meta } from "./tk-module.json";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface ExampleModConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mods.Chat Cleaner");
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
-
 class ExampleMod extends Module {
 	protected config = <ExampleModConfig>this._config.getConfig();
+	private logger = this.Logger.scope("Mods.Example Mod");
 
 	constructor() {
-		super(Info.name, Info.id, Info.version);
+		super(meta.name, meta.id, meta.version);
 
-		Logger.disable();
-		Logger.debug(this.config);
-		Logger.enable();
+		this.logger.start(`Initializing ${meta.name}`);
+		this.logger.info(`Module Version: ${meta.version}`);
+		this.logger.info(`Module ID: ${meta.id}`);
+
+		this.logger.disable();
+		this.logger.debug(this.config);
+		this.logger.enable();
 	}
 }
 

@@ -1,20 +1,22 @@
 /** @format */
 
-import dgram from "node:dgram";
-import Toolkit from "@Toolkit";
-import UDPSocketServerError from "@Core/error/UDPSocketServerError";
+import TK from "../..";
+import { createSocket, RemoteInfo } from "node:dgram";
+import UDPSocketServerError from "../../../src/core/error/UDPSocketServerError";
 
-interface UDPSSConfig {
+export interface UDPSocketServerConfig {
+	disabled: boolean;
 	port: number;
 	host: string;
 }
 
 class UDPSocketServer {
 	private static INSTANCE: UDPSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.UDPSS");
-	private Server = dgram.createSocket("udp4");
+	private Logger: TK["TKCore"]["Logger"];
+	private Server = createSocket("udp4");
 
-	private constructor(config: UDPSSConfig) {
+	private constructor(config: UDPSocketServerConfig, tkcore: TK["TKCore"]) {
+		this.Logger = tkcore.Logger.scope("Core.Net.UDPSocketServer");
 		this.Logger.await(`Starting...`);
 
 		this.Server.bind(config.port, config.host);
@@ -24,12 +26,12 @@ class UDPSocketServer {
 		this.Server.on("connect", this.onConnect);
 		this.Server.on("message", this.onMessage);
 		this.Server.on("listening", () => {
-			this.Logger.listen(`UDPSS on ${config.host}:${config.port}`);
+			this.Logger.listen(`UDPSocketServer on ${config.host}:${config.port}`);
 		});
 	}
 
-	public static getInstance(config: UDPSSConfig) {
-		if (!this.INSTANCE) this.INSTANCE = new UDPSocketServer(config);
+	public static getInstance(config: UDPSocketServerConfig, tkcore: TK["TKCore"]) {
+		if (!this.INSTANCE) this.INSTANCE = new UDPSocketServer(config, tkcore);
 		return this.INSTANCE;
 	}
 
@@ -57,7 +59,7 @@ class UDPSocketServer {
 		this.Logger.connect(`from Socket`);
 	}
 
-	private onMessage(msg: Buffer, rinfo: dgram.RemoteInfo) {
+	private onMessage(msg: Buffer, rinfo: RemoteInfo) {
 		this.Logger.message(`from ${rinfo.address}:${rinfo.port}`);
 		this.Logger.message(msg);
 	}

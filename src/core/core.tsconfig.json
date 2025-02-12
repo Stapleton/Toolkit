@@ -1,14 +1,11 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"tsBuildInfoFile": "../../build/core/.tsbuildinfo",
-		"composite": true
+		"tsBuildInfoFile": "../../build/src/core/.tsbuildinfo",
+		"composite": true,
+		"declarationDir": "../../typings/src"
 	},
-	"include": [
-		"**/*"
-	],
 	"files": [
-		"../Toolkit.ts",
-		"../app/index.ts"
+		"./index.ts"
 	]
 }

@@ -1,9 +1,0 @@
-{
-    "Info": {
-        "name": "Musicbot",
-        "id": "musicbot",
-        "version": "0.0.0",
-        "type": "mod",
-        "requires": [ "discord" ]
-    }
-}

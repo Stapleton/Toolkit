@@ -1,25 +1,23 @@
 /** @format */
 
 /***** Imports *****/
-import Toolkit from "@Toolkit";
-import Module from "@Core/lib/Module";
-import { IModConfig } from "@Core/lib/ModConfig";
-import { Info } from "@Mods/positivity-gen/positivity-gen.json";
+import { meta } from "./tk-module.json";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface PositivityGeneratorConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope(`Mods.${Info.id}`); // Finish Logger Definition
-Logger.start(`Initializing ${Info.name}
-Module Version: ${Info.version}
-Module ID: ${Info.id}`);
-
 class PositivityGenerator extends Module {
 	protected config = <PositivityGeneratorConfig>this._config.getConfig();
+	private logger = this.Logger.scope(`Mods.${meta.id}`);
 
 	constructor() {
-		super(Info.name, Info.id, Info.version);
+		super(meta.name, meta.id, meta.version);
+
+		this.logger.start(`Initializing ${meta.name}`);
+		this.logger.info(`Module Version: ${meta.version}`);
+		this.logger.info(`Module ID: ${meta.id}`);
 	}
 }
 

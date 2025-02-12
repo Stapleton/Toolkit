@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/modules/stock-trader/index.ts"],"names":[],"mappings":"AAAA;;;;GAIG;AAKH,OAAO,MAAqB,MAAM,kBAAkB,CAAC;AAcrD,MAAM,CAAC,OAAO,OAAO,WAAY,SAAQ,MAAM;IAC7C,OAAO,CAAC,MAAM,CAAS;IACvB,OAAO,CAAC,KAAK,CAAW;IACxB,OAAO,CAAC,KAAK,CAAW;;IAcxB,OAAO,CAAC,aAAa;IAMrB,OAAO,CAAC,eAAe;IAMvB,OAAO,CAAC,WAAW;CAMpB"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../../src/modules/stock-trader/index.ts"],"names":[],"mappings":"AAAA;;;;GAIG"}

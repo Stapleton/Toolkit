@@ -1,24 +1,26 @@
 /** @format */
 
-import WebSocketServerError from "@Core/error/WebSocketServerError";
-import Toolkit from "@Toolkit";
+import TK from "../..";
 import { IncomingMessage } from "http";
-import { RawData, WebSocketServer as WSS, WebSocket } from "ws";
+import { RawData, WebSocketServer as _WebSocketServer, WebSocket } from "ws";
+import WebSocketServerError from "../../../src/core/error/WebSocketServerError";
 
-interface WSSConfig {
+export interface WebSocketServerConfig {
+	disabled: boolean;
 	port: number;
 	host: string;
 }
 
-class WebSocketServer extends WSS {
+class WebSocketServer extends _WebSocketServer {
 	private static INSTANCE: WebSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.WSS");
+	private Logger: TK["TKCore"]["Logger"];
 
-	private constructor(config: WSSConfig) {
+	private constructor(config: WebSocketServerConfig, tkcore: TK["TKCore"]) {
 		super({
 			port: config.port,
 			host: config.host,
 		});
+		this.Logger = tkcore.Logger.scope("Core.Net.UDPSocketServer");
 		this.Logger.await(`Starting...`);
 
 		this.on("close", this.onClose);
@@ -26,12 +28,12 @@ class WebSocketServer extends WSS {
 		this.on("headers", this.onHeaders);
 		this.on("connection", this.onConnection);
 		this.on("listening", () => {
-			this.Logger.listen(`WSS on ${config.host}:${config.port}`);
+			this.Logger.listen(`WebSocketServer on ${config.host}:${config.port}`);
 		});
 	}
 
-	public static getInstance(config: WSSConfig) {
-		if (!this.INSTANCE) this.INSTANCE = new WebSocketServer(config);
+	public static getInstance(config: WebSocketServerConfig, tkcore: TK["TKCore"]) {
+		if (!this.INSTANCE) this.INSTANCE = new WebSocketServer(config, tkcore);
 		return this.INSTANCE;
 	}
 
@@ -44,7 +46,7 @@ class WebSocketServer extends WSS {
 	}
 
 	private onHeaders(headers: string[], request: IncomingMessage) {
-		this.Logger.debug(`WSS Headers: ${headers}`);
+		this.Logger.debug(`WebSocketServer Headers: ${headers}`);
 	}
 
 	private onConnection(websocket: WebSocket, request: IncomingMessage) {
@@ -57,3 +59,11 @@ class WebSocketServer extends WSS {
 }
 
 export default WebSocketServer;
+
+class Socket {}
+
+/**
+ * TODO: Implement Socket.io for Websocket Server
+ * make a class that contructs with a room name
+ *
+ */

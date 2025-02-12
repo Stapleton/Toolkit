@@ -1,0 +1,14 @@
+{
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"tsBuildInfoFile": "../../build/src/api/.tsbuildinfo",
+		"composite": true,
+		"declarationDir": "../../typings/src"
+	},
+	"files": [
+		"src/core/utils/Sleep.ts",
+		"src/core/lib/Module.ts",
+		"src/index.ts",
+		"src/Logger.ts"
+	]
+}

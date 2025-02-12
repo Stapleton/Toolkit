@@ -1,0 +1,15 @@
+{
+    "extends": "../modules.tsconfig.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "../../../build/modules/discord/.tsbuildinfo",
+        "composite": true
+    },
+    "include": [
+        "**/*",
+        "../command-manager/commands/youtube.ts"
+    ],
+    "files": [
+        "../../index.ts",
+        "./tk-module.json"
+    ]
+}

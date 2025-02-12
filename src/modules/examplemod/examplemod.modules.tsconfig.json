@@ -8,9 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./examplemod.json",
-        "../../core/lib/Module.ts",
-        "../../core/lib/ModConfig.ts"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

@@ -8,7 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./command-manager.json"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

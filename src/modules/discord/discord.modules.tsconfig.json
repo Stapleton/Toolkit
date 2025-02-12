@@ -6,9 +6,9 @@
 	},
 	"include": [
 		"**/*"
-	],
+, "../command-manager/commands/youtube.ts"	],
 	"files": [
-		"../../Toolkit.ts",
-		"./discord.json"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

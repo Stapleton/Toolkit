@@ -1,0 +1,14 @@
+{
+    "extends": "../modules.tsconfig.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "../../../build/modules/chat-cleaner/.tsbuildinfo",
+        "composite": true
+    },
+    "include": [
+        "**/*"
+    ],
+    "files": [
+        "../../Toolkit.ts",
+        "./tk-module.json"
+    ]
+}

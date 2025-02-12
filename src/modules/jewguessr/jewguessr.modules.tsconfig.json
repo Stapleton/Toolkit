@@ -8,7 +8,10 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./jewguessr.json"
+		"../../index.ts",
+		"./tk-module.json",
+		"./ScrapeIMDB.ts",
+		"./SPARQLQueryDispatcher.ts",
+		"./Validator.ts"
 	]
 }

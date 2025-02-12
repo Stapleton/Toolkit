@@ -1,0 +1,15 @@
+{
+    "extends": "../modules.tsconfig.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "../../../build/modules/stock-trader/.tsbuildinfo",
+        "composite": true
+    },
+    "include": [
+        "**/*"
+    ],
+    "files": [
+        "../../index.ts",
+        "./tk-module.json",
+        "./QueryStrings.json"
+    ]
+}

@@ -1,0 +1,1 @@
+{"version":3,"file":"ScrapeIMDB.d.ts","sourceRoot":"","sources":["../../../../src/modules/jewguessr/ScrapeIMDB.ts"],"names":[],"mappings":"AAAA,cAAc;AAGd,OAAO,KAAK,EAAE,MAAM,YAAY,CAAC;AAEjC,qBAAa,UAAU;IACtB,OAAO,CAAC,GAAG,CAAS;gBAER,IAAI,EAAE,MAAM;IAIX,MAAM;IAOZ,QAAQ,CAAC,GAAG,EAAE,EAAE,CAAC,GAAG;IAKpB,OAAO,CAAC,GAAG,EAAE,EAAE,CAAC,GAAG;CAW1B"}

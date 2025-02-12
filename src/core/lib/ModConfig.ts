@@ -1,33 +1,19 @@
 /** @format */
 
-import { join } from "path";
 import { parse } from "toml";
 import { Signale } from "signale";
-import Module from "@Core/lib/Module";
-import { existsSync, PathLike, readFileSync, writeFileSync } from "fs";
-
-export var __TKConfigs: Map<ModID, ModConfig> = new Map();
-
-export type ModName = string;
-export type ModID = string;
-export type ModVersion = string;
-export type ModType = "lib" | "mod";
-export type ModRequires = "none" | Array<ModID>;
-
-export interface IModConfig {
-	_name: ModName;
-	_id: ModID;
-	_version: ModVersion;
-	_type: ModType;
-	_requires: ModRequires;
-	_disabled: boolean;
-}
-
-// TODO: Compare config version with package version, update config version if older than package version
-// TODO: Add config fields programmatically, this will then prevent needing to package a config with differences and will cause config options to be added as needed
+import { join, parse as parsePath } from "path";
+import { __TKConfigs, __TKModules } from "./Module";
+import { IModConfig, IModule, Module } from "./Module";
+import { existsSync, PathLike, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
 const Logger = new Signale({
 	types: {
+		disabled: {
+			label: "Disabled",
+			color: "grey",
+			badge: "❌",
+		},
 		create: {
 			label: "Create",
 			color: "yellow",
@@ -36,7 +22,7 @@ const Logger = new Signale({
 	},
 });
 
-export default class ModConfig {
+export class ModConfig {
 	private Config: IModConfig;
 	private Path: PathLike;
 
@@ -45,7 +31,7 @@ export default class ModConfig {
 	 * Any Module found in the mods folder that doesnt have a matching Config
 	 * will show up in this list and will automatically have a default config generated for it.
 	 */
-	private NotInit: ModID[] = [];
+	private NotInit: IModule.ModID[] = [];
 
 	constructor(mod: Module) {
 		this.Path = join(process.cwd(), "config", `${mod.getID()}.toml`);
@@ -65,7 +51,13 @@ export default class ModConfig {
 	}
 
 	private makeConfig() {
-		return writeFileSync(this.Path, "", "utf8");
+		try {
+			mkdirSync(parsePath(this.Path.toString()).dir, { recursive: true });
+		} catch (e) {
+			if (e.code != "EEXIST") Logger.error(`Failed to create config directory.\n${e.message}`);
+		} finally {
+			return writeFileSync(this.Path, "", "utf8");
+		}
 	}
 
 	private readFile(path: PathLike): string {
@@ -75,17 +67,11 @@ export default class ModConfig {
 	private parseConfig(text: string): IModConfig {
 		let config = parse(text);
 		return {
-			_name: config.name,
-			_id: config.id,
-			_version: config.version,
-			_type: config.type,
-			_requires: config.requires,
-			_disabled: config.disabled,
 			...config,
 		};
 	}
 
-	private setConfig(id: ModID) {
+	private setConfig(id: IModule.ModID) {
 		let data = this.readFile(this.Path);
 		this.Config = this.parseConfig(data);
 		__TKConfigs.set(id, this);
@@ -95,16 +81,16 @@ export default class ModConfig {
 		return this.Config;
 	}
 
-	public notInit(id: ModID) {
+	public notInit(id: IModule.ModID) {
 		return this.NotInit.includes(id);
 	}
 
 	public init(
-		name: ModName,
-		id: ModID,
-		version: ModVersion = "0.0.0",
-		type: ModType = "mod",
-		requires: ModRequires = "none"
+		name: IModule.ModName,
+		id: IModule.ModID,
+		version: IModule.ModVersion = "0.0.0",
+		type: IModule.ModType = "mod",
+		requires: IModule.ModRequires = "none"
 	) {
 		let data = `[module]
 name = "${name}"
@@ -123,3 +109,5 @@ disabled = false`;
 		Logger.create(`Initialized Config for ${name}`);
 	}
 }
+
+export default ModConfig;
