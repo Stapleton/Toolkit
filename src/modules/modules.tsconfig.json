@@ -48,7 +48,7 @@
 	],
 	"files": [
 		"index.ts",
-		"../Toolkit.ts",
+		"../index.ts",
 		"../core/lib/Module.ts"
 	]
 }

@@ -9,6 +9,6 @@
 		"**/*"
 	],
 	"files": [
-		"../Toolkit.ts"
+		"../index.ts"
 	]
 }

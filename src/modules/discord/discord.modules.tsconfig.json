@@ -8,7 +8,7 @@
 		"**/*"
 , "../command-manager/commands/youtube.ts"	],
 	"files": [
-		"../../Toolkit.ts",
+		"../../index.ts",
 		"./discord.json"
 	]
 }

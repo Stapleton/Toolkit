@@ -4,20 +4,13 @@
  * @format
  */
 
-// TODO: Start each module as its own child process
-// TODO: All of my old bot modules will be rewritten into personal use tools for use within Toolkit
-
-// ?: Will this have 3rd-party service connections? Yes. Notably Discord.
-
-// ?: The old musicbot will be built into its own module and hosted from the Toolkit
-
 /***** Imports *****/
-import Toolkit from "../../src/Toolkit";
+import TK from "..";
 import { join } from "path";
-import { ChildProcess, fork } from "child_process";
-import { IModConfig, IModule } from "../../src/core/lib/Module";
-import { existsSync, lstat, lstatSync, PathLike, readdirSync, Stats } from "fs";
 import Sleep from "../core/utils/Sleep";
+import { ChildProcess, fork } from "child_process";
+import { IModule } from "../../src/core/lib/Module";
+import { existsSync, lstatSync, PathLike, readdirSync } from "fs";
 
 /* Interfaces */
 interface Discovery {
@@ -39,15 +32,19 @@ interface Fork extends Candidate {
 }
 
 /* Setup ModuleLoader */
-export class ModuleLoader {
-	private readonly Logger = Toolkit.Logger.Mods;
+export class TKModules {
+	private Toolkit: TK;
+	private Logger: TK["Logger"]["Mods"];
+
 	private discoveries: Discovery[] = [];
 	private candidates: Candidate[] = [];
 	private errored: Candidate[] = [];
 	private forks: Fork[] = [];
 
-	constructor() {
-		this.discover(Toolkit.Paths.Mods).then((_) => {
+	constructor(toolkit: TK) {
+		this.Toolkit = toolkit;
+		this.Logger = toolkit.Logger.Mods;
+		this.discover(this.Toolkit.Paths.Mods).then((_) => {
 			this.Logger.complete(`Discovered ${this.discoveries.length} Modules`);
 			this.resolveAndSortCandidates().then((_) => {
 				this.Logger.complete(
@@ -139,4 +136,4 @@ export class ModuleLoader {
 	}
 }
 
-new ModuleLoader();
+export default TKModules;

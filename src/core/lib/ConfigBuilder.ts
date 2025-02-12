@@ -5,7 +5,7 @@
  */
 
 /***** Imports *****/
-import Toolkit from "../../../src/Toolkit";
+import Toolkit from "../..";
 import { join } from "path";
 import { parse } from "toml";
 import { PathLike } from "fs";

@@ -1,6 +1,6 @@
 /** @format */
 
-import { Signale } from "signale";
+import logger from "./Logger";
 import { EventEmitter } from "node:events";
 import { ModConfig } from "../lib/ModConfig";
 
@@ -26,21 +26,6 @@ export interface IModConfig {
 	};
 }
 
-const Logger = new Signale({
-	types: {
-		disabled: {
-			label: "Disabled",
-			color: "grey",
-			badge: "❌",
-		},
-		create: {
-			label: "Create",
-			color: "yellow",
-			badge: "✨",
-		},
-	},
-});
-
 export class Module extends EventEmitter {
 	protected _name: IModule.ModName;
 	protected id: IModule.ModID;
@@ -48,6 +33,8 @@ export class Module extends EventEmitter {
 	protected type: IModule.ModType;
 	protected requires: IModule.ModRequires;
 	protected _config: ModConfig;
+
+	public Logger: typeof logger["Global"] = logger.Global.scope("Toolkit.Lib.Module");
 
 	constructor(
 		name: IModule.ModName,
@@ -71,7 +58,7 @@ export class Module extends EventEmitter {
 	}
 
 	protected disabledMod(exitcode: number) {
-		Logger.disabled(`${this._name} is disabled.`);
+		this.Logger.disabled(`${this._name} is disabled.`);
 		process.exit(exitcode);
 	}
 

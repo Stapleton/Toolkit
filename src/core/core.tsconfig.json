@@ -9,7 +9,7 @@
 		"./**/*"
 , "utils/Sleep.ts"	],
 	"files": [
-		"../Toolkit.ts",
+		"../index.ts",
 		"../app/index.ts"
 	]
 }

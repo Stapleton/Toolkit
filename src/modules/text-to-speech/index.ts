@@ -5,29 +5,27 @@
  */
 
 /***** Imports *****/
-import { IModConfig } from "../../../src/core/lib/Module";
-import { Module } from "../../../src/core/lib/Module";
 import { meta } from "./tk-module.json";
-import Toolkit from "../../../src/Toolkit";
+import { Module, IModConfig } from "../../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface TextToSpeechConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mods.Text to Speech");
-Logger.start(`Initializing ${meta.name}`);
-Logger.info(`Module Version: ${meta.version}`);
-Logger.info(`Module ID: ${meta.id}`);
-
 class TextToSpeech extends Module {
 	protected config = <TextToSpeechConfig>this._config.getConfig();
+	private logger = this.Logger.scope("Mods.TextToSpeech");
 
 	constructor() {
 		super(meta.name, meta.id, meta.version);
 
-		Logger.disable();
-		Logger.debug(this.config);
-		Logger.enable();
+		this.logger.start(`Initializing ${meta.name}`);
+		this.logger.info(`Module Version: ${meta.version}`);
+		this.logger.info(`Module ID: ${meta.id}`);
+
+		this.logger.disable();
+		this.logger.debug(this.config);
+		this.logger.enable();
 	}
 }
 

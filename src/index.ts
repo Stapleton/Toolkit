@@ -1,26 +1,69 @@
-/**
- * ** Imports ****
- *
- * @format
- */
+/** @format */
 
-import { fork, exec } from "child_process";
-import Toolkit from "./Toolkit";
-import Sleep from "./core/utils/Sleep";
+import { join } from "path";
+import Logger from "./core/lib/Logger";
+import { ChildProcess, exec } from "child_process";
+import { existsSync, writeFileSync } from "fs";
+import { __TKConfigs } from "./core/lib/Module";
 
-/***** Setup *****/
-/*if (!Toolkit.Config.Api.disabled)*/ Toolkit.Workers.set(
-	"api",
-	fork("./src/api/index.ts", { serialization: "advanced" })
-);
-Sleep(200);
-/*if (!Toolkit.Config.App.disabled)*/ //Toolkit.Workers.set("app", exec("electron ./src/app/main.js"));
-Sleep(200);
-/*if (!Toolkit.Config.Core.disabled)*/
-Toolkit.Workers.set("core", fork("./src/core/index.ts", { serialization: "advanced" }));
-Sleep(200);
-/*if (!Toolkit.Config.Module.disabled)*/
-Toolkit.Workers.set("module", fork("./src/modules/index.ts", { serialization: "advanced" }));
-Sleep(100);
+import TKApi from "./api";
+import TKCore from "./core";
+import TKModules from "./modules";
 
-Toolkit.Logger.Global.start("Starting Toolkit!");
+export type ToolkitDomain = "api" | "app" | "core" | "module";
+
+/***** Setup Toolkit *****/
+class Toolkit {
+	private static INSTANCE: Toolkit;
+
+	public Modules = __TKConfigs;
+	public Configs = __TKConfigs;
+
+	public TKApi: TKApi;
+	public TKApp: ChildProcess;
+	public TKCore: TKCore;
+	public TKModules: TKModules;
+
+	public Paths = {
+		Config: `${process.cwd()}\\config`,
+		Api: `${process.cwd()}\\src\\api`,
+		App: `${process.cwd()}\\src\\app`,
+		Core: `${process.cwd()}\\src\\core`,
+		Mods: `${process.cwd()}\\src\\modules`,
+	};
+
+	public Logger: typeof Logger = Logger;
+
+	public static getInstance() {
+		if (!this.INSTANCE) {
+			this.INSTANCE = new Toolkit();
+		}
+		return this.INSTANCE;
+	}
+
+	private constructor() {
+		this.Logger.Global.start("Starting Toolkit!");
+
+		this.checkAuth();
+
+		this.TKApi = new TKApi(this);
+		this.TKApp = exec("electron ./src/app/app.js");
+		this.TKCore = new TKCore(this);
+		this.TKModules = new TKModules(this);
+	}
+
+	private checkAuth() {
+		let p = join(this.Paths.Config, "auth.json");
+
+		if (!existsSync(p)) {
+			writeFileSync(p, "{}", "utf-8");
+			this.Logger.Core.star(`Created new auth.json in config folder!`);
+		}
+	}
+}
+
+Toolkit.getInstance();
+
+type TK = Toolkit;
+
+export default TK;

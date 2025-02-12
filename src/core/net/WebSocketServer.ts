@@ -1,9 +1,9 @@
 /** @format */
 
-import WebSocketServerError from "../../../src/core/error/WebSocketServerError";
-import Toolkit from "../../../src/Toolkit";
+import TK from "../..";
 import { IncomingMessage } from "http";
 import { RawData, WebSocketServer as _WebSocketServer, WebSocket } from "ws";
+import WebSocketServerError from "../../../src/core/error/WebSocketServerError";
 
 export interface WebSocketServerConfig {
 	disabled: boolean;
@@ -13,13 +13,14 @@ export interface WebSocketServerConfig {
 
 class WebSocketServer extends _WebSocketServer {
 	private static INSTANCE: WebSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.WebSocketServer");
+	private Logger: TK["TKCore"]["Logger"];
 
-	private constructor(config: WebSocketServerConfig) {
+	private constructor(config: WebSocketServerConfig, tkcore: TK["TKCore"]) {
 		super({
 			port: config.port,
 			host: config.host,
 		});
+		this.Logger = tkcore.Logger.scope("Core.Net.UDPSocketServer");
 		this.Logger.await(`Starting...`);
 
 		this.on("close", this.onClose);
@@ -31,8 +32,8 @@ class WebSocketServer extends _WebSocketServer {
 		});
 	}
 
-	public static getInstance(config: WebSocketServerConfig) {
-		if (!this.INSTANCE) this.INSTANCE = new WebSocketServer(config);
+	public static getInstance(config: WebSocketServerConfig, tkcore: TK["TKCore"]) {
+		if (!this.INSTANCE) this.INSTANCE = new WebSocketServer(config, tkcore);
 		return this.INSTANCE;
 	}
 

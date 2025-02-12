@@ -8,7 +8,7 @@
 // TODO: Create various API endpoints for internal and external tool usage
 
 /***** Imports *****/
-import Toolkit from "../../src/Toolkit";
+import TK from "../index";
 import { Module, IModConfig } from "../../src/core/lib/Module";
 
 /***** Interfaces *****/
@@ -16,19 +16,16 @@ interface TKApiConfig extends IModConfig {}
 
 /***** Setup TKApi *****/
 class TKApi extends Module {
-	private static INSTANCE: TKApi;
-	private readonly Logger = Toolkit.Logger.Api;
+	private Toolkit: TK;
+
 	private readonly Config = <TKApiConfig>this._config.getConfig();
 
-	private constructor() {
+	constructor(toolkit: TK) {
 		super("Toolkit API", "tk-api", "0.0.1", "lib", ["toolkit"]);
+		this.Toolkit = toolkit;
+		this.Logger = toolkit.Logger.Api;
 		this.Logger.start("Initializing");
-	}
-
-	public static getInstance() {
-		if (!this.INSTANCE) this.INSTANCE = new TKApi();
-		return this.INSTANCE;
 	}
 }
 
-TKApi.getInstance();
+export default TKApi;

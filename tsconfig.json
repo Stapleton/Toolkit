@@ -43,7 +43,7 @@
 				"config/*"
 			],
 			"@Toolkit": [
-				"src/Toolkit.ts"
+				"src/index.ts"
 			],
 			"@Auth": [
 				"config/auth.json"
@@ -74,7 +74,7 @@
 	"files": [
 		"src/core/utils/Sleep.ts",
 		"src/core/lib/Module.ts",
-		"src/Toolkit.ts",
-		"src/index.ts"
+		"src/index.ts",
+		"src/Logger.ts"
 	]
 }

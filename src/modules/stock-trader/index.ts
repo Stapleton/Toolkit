@@ -5,13 +5,12 @@
  */
 
 /***** Imports *****/
-import Toolkit from "../../../src/Toolkit";
 import Puppeteer from "puppeteer";
+import { meta } from "./tk-module.json";
 import Sleep from "../../core/utils/Sleep";
 import OrderMaker from "../../../src/modules/stock-trader/OrderMaker";
-import { meta } from "./tk-module.json";
-import { clickEl, typeEl } from "../../../src/modules/stock-trader/ElementAbuse";
 import { IModConfig, Module, IModule } from "../../../src/core/lib/Module";
+import { clickEl, typeEl } from "../../../src/modules/stock-trader/ElementAbuse";
 import { Login as LoginFlow } from "../../../src/modules/stock-trader/QueryStrings.json";
 
 /***** Interfaces *****/
@@ -39,53 +38,53 @@ interface StockTraderConfig extends IModConfig {
 }
 
 /***** Setup *****/
-const Logger = Toolkit.Logger.Mods.scope("Mods.Stock Trader");
-Logger.start(`Initializing ${meta.name}`);
-Logger.info(`Module Version: ${meta.version}`);
-Logger.info(`Module ID: ${meta.id}`);
-
 class StockTrader extends Module {
 	protected config = <StockTraderConfig>this._config.getConfig();
+	private logger = this.Logger.scope("Mods.StockTrader");
 
 	constructor() {
 		super(meta.name, meta.id, meta.version, <IModule.ModType>meta.type, <IModule.ModRequires>meta.requires);
 
+		this.logger.start(`Initializing ${meta.name}`);
+		this.logger.info(`Module Version: ${meta.version}`);
+		this.logger.info(`Module ID: ${meta.id}`);
+
 		this.startTime(this._name); // Start logger timer without timer auto log
 
 		this.setupPuppeteer().then((_) => {
-			Logger.complete(`Spawned. Took ${this.stopTime().span}ms. Closing Puppet...`);
+			this.logger.complete(`Spawned. Took ${this.stopTime().span}ms. Closing Puppet...`);
 		});
 	}
 
 	private startTime(label: string): void {
-		Logger.disable();
-		Logger.time(label);
-		Logger.enable();
+		this.logger.disable();
+		this.logger.time(label);
+		this.logger.enable();
 	}
 
 	private stopTime(): { label: string; span?: number } {
 		let time;
 
-		Logger.disable();
-		time = Logger.timeEnd();
-		Logger.enable();
+		this.logger.disable();
+		time = this.logger.timeEnd();
+		this.logger.enable();
 
 		return time;
 	}
 
 	private async setupPuppeteer() {
-		Logger.info(`Launching Puppet...`);
+		this.logger.info(`Launching Puppet...`);
 		const Browser = await Puppeteer.launch({ headless: this.config.Puppet.headless });
 		let Pages = await Browser.pages();
 
-		Logger.info(`Changing Viewport Size to 1000x850...`);
+		this.logger.info(`Changing Viewport Size to 1000x850...`);
 		await Pages[0].setViewport({
 			width: 1000,
 			height: 850,
 		});
 
 		await this.loginToTradingView(Browser);
-		Logger.await(`Logging into TradingView...`);
+		this.logger.await(`Logging into TradingView...`);
 	}
 
 	private async loginToTradingView(browser: Puppeteer.Browser) {
@@ -93,7 +92,7 @@ class StockTrader extends Module {
 			page = await browser.pages(),
 			QS = LoginFlow.TradingView;
 
-		Logger.pending(`Heading to ${this.config.Puppet.initLink}`);
+		this.logger.pending(`Heading to ${this.config.Puppet.initLink}`);
 		page[0].goto(this.config.Puppet.initLink).then(execute);
 
 		async function execute() {
@@ -105,7 +104,7 @@ class StockTrader extends Module {
 			await clickEl(QS.button.Submit, page[0]);
 			Sleep(2000);
 
-			Logger.await(`Opening Orders...`);
+			self.logger.await(`Opening Orders...`);
 			await self.loginToBroker(browser);
 		}
 
@@ -117,14 +116,14 @@ class StockTrader extends Module {
 			page = await browser.pages(),
 			QS = LoginFlow.Broker;
 
-		Logger.pending(`Heading to ${this.config.Puppet.chartLink}`);
+		this.logger.pending(`Heading to ${this.config.Puppet.chartLink}`);
 		page[0].goto(this.config.Puppet.chartLink).then(execute);
 
 		async function execute() {
 			try {
 				page[0].$(QS.grid.OrderPanel);
 			} catch (e) {
-				Logger.error(`Order Button was already button somehow ???\n${e}`);
+				self.logger.error(`Order Button was already button somehow ???\n${e}`);
 				clickEl(QS.button.OrderPanel, page[0]);
 			} finally {
 				Sleep(3000);
@@ -136,7 +135,7 @@ class StockTrader extends Module {
 				await clickEl(QS.button.Submit, page[0]);
 			}
 			Sleep(4000);
-			new OrderMaker(page[0]).buy().order("stoplimit").lots(1).setValue(6, 10000).setValue(0, 12000);
+			new OrderMaker(page[0], self.logger).buy().order("stoplimit").lots(1).setValue(6, 10000).setValue(0, 12000);
 			//execute.name;
 		}
 	}

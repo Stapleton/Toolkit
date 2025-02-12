@@ -1,7 +1,7 @@
 /** @format */
 
+import TK from "../..";
 import { createSocket, RemoteInfo } from "node:dgram";
-import Toolkit from "../../../src/Toolkit";
 import UDPSocketServerError from "../../../src/core/error/UDPSocketServerError";
 
 export interface UDPSocketServerConfig {
@@ -12,10 +12,11 @@ export interface UDPSocketServerConfig {
 
 class UDPSocketServer {
 	private static INSTANCE: UDPSocketServer;
-	private Logger = Toolkit.Logger.Core.scope("Core.Net.UDPSocketServer");
+	private Logger: TK["TKCore"]["Logger"];
 	private Server = createSocket("udp4");
 
-	private constructor(config: UDPSocketServerConfig) {
+	private constructor(config: UDPSocketServerConfig, tkcore: TK["TKCore"]) {
+		this.Logger = tkcore.Logger.scope("Core.Net.UDPSocketServer");
 		this.Logger.await(`Starting...`);
 
 		this.Server.bind(config.port, config.host);
@@ -29,8 +30,8 @@ class UDPSocketServer {
 		});
 	}
 
-	public static getInstance(config: UDPSocketServerConfig) {
-		if (!this.INSTANCE) this.INSTANCE = new UDPSocketServer(config);
+	public static getInstance(config: UDPSocketServerConfig, tkcore: TK["TKCore"]) {
+		if (!this.INSTANCE) this.INSTANCE = new UDPSocketServer(config, tkcore);
 		return this.INSTANCE;
 	}
 

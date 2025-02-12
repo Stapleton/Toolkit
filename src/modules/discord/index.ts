@@ -5,28 +5,30 @@
  */
 
 /***** Imports *****/
-import Toolkit from "../../../src/Toolkit";
-import { IModConfig, Module } from "../../../src/core/lib/Module";
+import Client from "./Client";
 import { meta } from "./tk-module.json";
+import { IModConfig, Module } from "../../../src/core/lib/Module";
 
 /***** Interfaces *****/
 interface DiscordConfig extends IModConfig {}
 
 /***** Setup *****/
-let Logger = Toolkit.Logger.Mods.scope("Mods.Discord");
-Logger.start(`Initializing ${meta.name}`);
-Logger.info(`Module Version: ${meta.version}`);
-Logger.info(`Module ID: ${meta.id}`);
-
 class Discord extends Module {
 	protected config = <DiscordConfig>this._config.getConfig();
+	private logger = this.Logger.scope("Mods.Discord");
 
 	constructor() {
 		super(meta.name, meta.id, meta.version, "lib", "none");
 
-		Logger.disable();
-		Logger.debug(this.config);
-		Logger.enable();
+		this.logger.start(`Initializing ${meta.name}`);
+		this.logger.info(`Module Version: ${meta.version}`);
+		this.logger.info(`Module ID: ${meta.id}`);
+
+		this.logger.disable();
+		this.logger.debug(this.config);
+		this.logger.enable();
+
+		Client.getInstance();
 	}
 }
 

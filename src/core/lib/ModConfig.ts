@@ -1,12 +1,11 @@
 /** @format */
 
-import { Signale } from "signale";
-
-import { existsSync, PathLike, readFileSync, writeFileSync, mkdirSync } from "node:fs";
-import { join, parse as parsePath } from "path";
 import { parse } from "toml";
-import { IModConfig, IModule, Module } from "./Module";
+import { Signale } from "signale";
+import { join, parse as parsePath } from "path";
 import { __TKConfigs, __TKModules } from "./Module";
+import { IModConfig, IModule, Module } from "./Module";
+import { existsSync, PathLike, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 
 const Logger = new Signale({
 	types: {
