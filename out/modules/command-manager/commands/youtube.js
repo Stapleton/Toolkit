@@ -1,0 +1,16 @@
+"use strict";
+/** @format */
+Object.defineProperty(exports, "__esModule", { value: true });
+const discord_js_1 = require("discord.js");
+exports.default = {
+    data: new discord_js_1.SlashCommandBuilder()
+        .setName("youtube")
+        .setDescription("Stream a youtube video.")
+        .addStringOption((option) => option.setName("url").setDescription("Youtube URL to stream in voice chat."))
+        .toJSON(),
+    async execute(interaction) {
+        const { value: url } = interaction.options.get("url");
+        await interaction.reply(`${url}`);
+    },
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieW91dHViZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3NyYy9tb2R1bGVzL2NvbW1hbmQtbWFuYWdlci9jb21tYW5kcy95b3V0dWJlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFBQSxjQUFjOztBQUVkLDJDQUFvRztBQUVwRyxrQkFBZTtJQUNkLElBQUksRUFBRSxJQUFJLGdDQUFtQixFQUFFO1NBQzdCLE9BQU8sQ0FBQyxTQUFTLENBQUM7U0FDbEIsY0FBYyxDQUFDLHlCQUF5QixDQUFDO1NBQ3pDLGVBQWUsQ0FBQyxDQUFDLE1BQU0sRUFBRSxFQUFFLENBQUMsTUFBTSxDQUFDLE9BQU8sQ0FBQyxLQUFLLENBQUMsQ0FBQyxjQUFjLENBQUMsc0NBQXNDLENBQUMsQ0FBQztTQUN6RyxNQUFNLEVBQUU7SUFDVixLQUFLLENBQUMsT0FBTyxDQUFDLFdBQStCO1FBQzVDLE1BQU0sRUFBRSxLQUFLLEVBQUUsR0FBRyxFQUFFLEdBQUcsV0FBVyxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsS0FBSyxDQUFDLENBQUM7UUFFdEQsTUFBTSxXQUFXLENBQUMsS0FBSyxDQUFDLEdBQUcsR0FBRyxFQUFFLENBQUMsQ0FBQztJQUNuQyxDQUFDO0NBQ0QsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKiBAZm9ybWF0ICovXHJcblxyXG5pbXBvcnQgeyBTbGFzaENvbW1hbmRCdWlsZGVyLCBDb21tYW5kSW50ZXJhY3Rpb24sIENvbnRleHRNZW51Q29tbWFuZEludGVyYWN0aW9uIH0gZnJvbSBcImRpc2NvcmQuanNcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IHtcclxuXHRkYXRhOiBuZXcgU2xhc2hDb21tYW5kQnVpbGRlcigpXHJcblx0XHQuc2V0TmFtZShcInlvdXR1YmVcIilcclxuXHRcdC5zZXREZXNjcmlwdGlvbihcIlN0cmVhbSBhIHlvdXR1YmUgdmlkZW8uXCIpXHJcblx0XHQuYWRkU3RyaW5nT3B0aW9uKChvcHRpb24pID0+IG9wdGlvbi5zZXROYW1lKFwidXJsXCIpLnNldERlc2NyaXB0aW9uKFwiWW91dHViZSBVUkwgdG8gc3RyZWFtIGluIHZvaWNlIGNoYXQuXCIpKVxyXG5cdFx0LnRvSlNPTigpLFxyXG5cdGFzeW5jIGV4ZWN1dGUoaW50ZXJhY3Rpb246IENvbW1hbmRJbnRlcmFjdGlvbikge1xyXG5cdFx0Y29uc3QgeyB2YWx1ZTogdXJsIH0gPSBpbnRlcmFjdGlvbi5vcHRpb25zLmdldChcInVybFwiKTtcclxuXHJcblx0XHRhd2FpdCBpbnRlcmFjdGlvbi5yZXBseShgJHt1cmx9YCk7XHJcblx0fSxcclxufTtcclxuIl19

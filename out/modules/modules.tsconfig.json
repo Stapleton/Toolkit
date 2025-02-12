@@ -1,0 +1,52 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "tsBuildInfoFile": "../../build/src/modules/.tsbuildinfo",
+        "composite": true,
+        "declarationDir": "../../typings/src"
+    },
+    "references": [
+        {
+            "path": "./chat-cleaner/chat-cleaner.modules.tsconfig.json"
+        },
+        {
+            "path": "./command-manager/command-manager.modules.tsconfig.json"
+        },
+        {
+            "path": "./custom-rpc/custom-rpc.modules.tsconfig.json"
+        },
+        {
+            "path": "./discord/discord.modules.tsconfig.json"
+        },
+        {
+            "path": "./examplemod/examplemod.modules.tsconfig.json"
+        },
+        {
+            "path": "./jewguessr/jewguessr.modules.tsconfig.json"
+        },
+        {
+            "path": "./mass-ban-tool/mass-ban-tool.modules.tsconfig.json"
+        },
+        {
+            "path": "./musicbot/musicbot.modules.tsconfig.json"
+        },
+        {
+            "path": "./positivity-gen/positivity-gen.modules.tsconfig.json"
+        },
+        {
+            "path": "./role-manager/role-manager.modules.tsconfig.json"
+        },
+        {
+            "path": "./sandbox/sandbox.modules.tsconfig.json"
+        },
+        {
+            "path": "./stock-trader/stock-trader.modules.tsconfig.json"
+        },
+        {
+            "path": "./text-to-speech/text-to-speech.modules.tsconfig.json"
+        }
+    ],
+    "files": [
+        "./index.ts"
+    ]
+}

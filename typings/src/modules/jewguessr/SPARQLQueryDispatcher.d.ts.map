@@ -1,0 +1,1 @@
+{"version":3,"file":"SPARQLQueryDispatcher.d.ts","sourceRoot":"","sources":["../../../../src/modules/jewguessr/SPARQLQueryDispatcher.ts"],"names":[],"mappings":"AAAA,cAAc;AAId,qBAAa,qBAAqB;IACjC,SAAS,CAAC,QAAQ,EAAE,MAAM,CAAC;gBAEf,QAAQ,EAAE,MAAM;IAI5B,KAAK,CAAC,WAAW,EAAE,MAAM;CAMzB"}

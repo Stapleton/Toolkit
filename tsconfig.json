@@ -25,7 +25,7 @@
 		"noImplicitThis": true,
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
-		"outDir": "./build",
+		"outDir": "./out",
 		"paths": {
 			"@Mods/*": [
 				"src/modules/*"
@@ -54,7 +54,7 @@
 		"skipDefaultLibCheck": true,
 		"skipLibCheck": true,
 		"target": "ESNext",
-		"tsBuildInfoFile": "./build/.tsbuildinfo",
+		"tsBuildInfoFile": "./.tsbuildinfo",
 		"types": ["ws", "node", "jsonfile", "dom-parser", "signale"]
 	},
 	"references": [

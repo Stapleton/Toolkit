@@ -1,0 +1,10 @@
+"use strict";
+/** @format */
+Object.defineProperty(exports, "__esModule", { value: true });
+class TwitchCommandManager {
+    constructor() {
+        console.log("Twitch Command Manager is Not Yet Implemented");
+    }
+}
+exports.default = TwitchCommandManager;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVHdpdGNoQ29tbWFuZE1hbmFnZXIuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvbW9kdWxlcy9jb21tYW5kLW1hbmFnZXIvVHdpdGNoQ29tbWFuZE1hbmFnZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUFBLGNBQWM7O0FBRWQsTUFBcUIsb0JBQW9CO0lBQ3hDO1FBQ0MsT0FBTyxDQUFDLEdBQUcsQ0FBQywrQ0FBK0MsQ0FBQyxDQUFDO0lBQzlELENBQUM7Q0FDRDtBQUpELHVDQUlDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqIEBmb3JtYXQgKi9cclxuXHJcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFR3aXRjaENvbW1hbmRNYW5hZ2VyIHtcclxuXHRjb25zdHJ1Y3RvcigpIHtcclxuXHRcdGNvbnNvbGUubG9nKFwiVHdpdGNoIENvbW1hbmQgTWFuYWdlciBpcyBOb3QgWWV0IEltcGxlbWVudGVkXCIpO1xyXG5cdH1cclxufVxyXG4iXX0=
