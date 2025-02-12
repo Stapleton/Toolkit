@@ -19,19 +19,19 @@
 	"homepage": "https://github.com/Stapleton/toolkit#readme",
 	"dependencies": {
 		"bufferutil": "^4.0.7",
-		"discord.js": "^14.14.1",
+		"discord.js": "^14.18.0",
 		"dom-parser": "^0.1.6",
 		"dotenv": "^16.4.7",
 		"electron": "^22.0.0",
 		"jsonfile": "^6.1.0",
 		"node-fetch": "^3.3.0",
-		"puppeteer": "^18.0.5",
+		"puppeteer": "^18.2.1",
 		"signale": "^1.4.0",
 		"socket.io": "^4.5.4",
 		"toml": "^3.0.0",
 		"tsx": "^4.19.2",
 		"utf-8-validate": "^5.0.10",
-		"ws": "^8.11.0"
+		"ws": "^8.18.0"
 	},
 	"devDependencies": {
 		"@types/dom-parser": "^0.1.1",
