@@ -1,6 +1,5 @@
 /** @format */
 
-import { Signale } from "signale";
 import Logger from "../../core/lib/Logger";
 import { Discord } from "../../../config/auth.json";
 import { Client as DJSClient, Events, GatewayIntentBits } from "discord.js";
