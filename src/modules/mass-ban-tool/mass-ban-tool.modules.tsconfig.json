@@ -8,7 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./mass-ban-tool.json"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

@@ -9,6 +9,6 @@
 , "../command-manager/commands/youtube.ts"	],
 	"files": [
 		"../../index.ts",
-		"./discord.json"
+		"./tk-module.json"
 	]
 }

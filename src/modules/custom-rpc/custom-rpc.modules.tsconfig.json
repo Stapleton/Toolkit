@@ -9,6 +9,6 @@
 	],
 	"files": [
 		"../../Toolkit.ts",
-		"./custom-rpc.json"
+		"./tk-module.json"
 	]
 }

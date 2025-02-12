@@ -8,7 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./role-manager.json"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

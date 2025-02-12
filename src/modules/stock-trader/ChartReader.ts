@@ -4,7 +4,6 @@
  * @format
  */
 
-import Toolkit from "../../../src/Toolkit";
 import { Page } from "puppeteer";
 
 /***** Imports *****/
@@ -19,7 +18,7 @@ class ChartReaderError extends Error {
 }
 
 /***** Setup *****/
-const Logger = Toolkit.Logger.Mods.scope("StockTrader/ChartReader");
-Logger.start("Initializing");
+//const Logger = Toolkit.Logger.Mods.scope("StockTrader/ChartReader");
+//Logger.start("Initializing");
 
 export default class ChartReader {}

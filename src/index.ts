@@ -2,9 +2,9 @@
 
 import { join } from "path";
 import Logger from "./core/lib/Logger";
-import { ChildProcess, exec } from "child_process";
 import { existsSync, writeFileSync } from "fs";
 import { __TKConfigs } from "./core/lib/Module";
+import { ChildProcess, exec } from "child_process";
 
 import TKApi from "./api";
 import TKCore from "./core";

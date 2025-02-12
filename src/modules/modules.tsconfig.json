@@ -47,8 +47,6 @@
 		}
 	],
 	"files": [
-		"index.ts",
-		"../index.ts",
-		"../core/lib/Module.ts"
+		"./index.ts"
 	]
 }

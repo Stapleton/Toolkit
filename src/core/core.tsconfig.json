@@ -5,11 +5,7 @@
 		"composite": true,
 		"declarationDir": "../../typings/src"
 	},
-	"include": [
-		"./**/*"
-, "utils/Sleep.ts"	],
 	"files": [
-		"../index.ts",
-		"../app/index.ts"
+		"./index.ts"
 	]
 }

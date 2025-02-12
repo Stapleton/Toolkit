@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"allowSyntheticDefaultImports": true,
 		"assumeChangesOnlyAffectDirectDependencies": false,
-		"baseUrl": "../Toolkit",
+		"baseUrl": "../TS_Toolkit",
 		"declaration": true,
 		"declarationDir": "./typings",
 		"declarationMap": true,
@@ -62,19 +62,14 @@
 			"path": "./src/api/api.tsconfig.json"
 		},
 		{
-			"path": "./src/app/app.tsconfig.json"
-		},
-		{
 			"path": "./src/modules/modules.tsconfig.json"
 		},
 		{
 			"path": "./src/core/core.tsconfig.json"
 		}
 	],
-	"files": [
-		"src/core/utils/Sleep.ts",
-		"src/core/lib/Module.ts",
-		"src/index.ts",
-		"src/Logger.ts"
+	"include": [
+		"**/*",
+		"./src/modules/**/*.json"
 	]
 }

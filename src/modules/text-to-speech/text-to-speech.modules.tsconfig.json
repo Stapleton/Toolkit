@@ -8,7 +8,7 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"./text-to-speech.json"
+		"../../index.ts",
+		"./tk-module.json"
 	]
 }

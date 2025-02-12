@@ -9,6 +9,6 @@
 	],
 	"files": [
 		"../../index.ts",
-		"./command-manager.json"
+		"./tk-module.json"
 	]
 }

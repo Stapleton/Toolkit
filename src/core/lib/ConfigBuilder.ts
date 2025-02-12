@@ -12,11 +12,11 @@ import { PathLike } from "fs";
 import { Module } from "../../../src/core/lib/Module";
 
 /***** Setup *****/
-const Logger = Toolkit.Logger.Mods.scope("Core/ConfigBuilder");
-Logger.start("Initializing");
+//const Logger = Toolkit.Logger.Mods.scope("Core/ConfigBuilder");
+//Logger.start("Initializing");
 
 export class ConfigBuilder {
-	private RootDir: string = Toolkit.Paths.Config;
+	private RootDir: string = ""; //Toolkit.Paths.Config;
 	private Original: string;
 	private footer: string[];
 	private version: string;

@@ -3,7 +3,6 @@
 	"version": "0.0.0",
 	"description": "So many tools",
 	"main": "./src/app/main.js",
-	"type": "commonjs",
 	"scripts": {
 		"test": "echo \"your mom is gay\";",
 		"start": "node -r ts-node/register -r tsconfig-paths/register ./src/index.ts"

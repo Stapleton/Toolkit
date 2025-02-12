@@ -8,12 +8,8 @@
 		"**/*"
 	],
 	"files": [
-		"../../Toolkit.ts",
-		"../../../src/core/lib/Module.ts",
-		"../../../src/core/lib/Sleep.ts",
-		"../../../src/core/lib/ModConfig.ts",
-		"../../../config/auth.json",
-		"./stock-trader.json",
+		"../../index.ts",
+		"./tk-module.json",
 		"./QueryStrings.json"
 	]
 }
